@@ -11,6 +11,7 @@ Using React, build the client-side for an app called myMovie based on it's exist
 Development: 
  - Navigate to root folder in termianl
  - Run the following: ``` $ parcel src/index.html ```
+ - In browser, navigate to http://localhost:1234
 
 ## Project Dependencies
 
