@@ -8,30 +8,6 @@ export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user")); //parse stringified JSON object sent byt login-view
     const storedToken = localStorage.getItem("token");
     const [movies, setMovies] = useState([]);
-
-    useEffect(() => {
-        fetch("https://movie-api-git-main-brett-ranieri.vercel.app/movies")
-            .then((response) => response.json())
-            .then((data) => {
-                const moviesFromApi = data.map((doc) => {
-                    return {
-                        _id: doc._id,
-                        title: doc.Title,
-                        imagePath: doc.ImagePath,
-                        description: doc.Description,
-                        directorName: doc.Director.Name,
-                        directorBio: doc.Director.Bio,
-                        directorBirth: doc.Director.Birth,
-                        directorDeath: doc.Director.Death,
-                        genreName: doc.Genre.Name,
-                        genreDescription: doc.Genre.Description
-                    };
-                });
-
-                setMovies(moviesFromApi);
-            });
-    }, []);
-
     const [selectedMovie, setSelectedMovie] = useState(null); //set useState to null so view not displayed by default
     const [user, setUser] = useState(storedUser? storedUser : null); //set useState to first take storedUser info, if not, state is set to null
     const [token, setToken] = useState(storedToken? storedToken : null);
