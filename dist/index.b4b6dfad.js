@@ -27294,7 +27294,12 @@ const MainView = ()=>{
     const [user, setUser] = (0, _react.useState)(null);
     const [token, setToken] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
-        fetch("https://movie-api-git-main-brett-ranieri.vercel.app/movies").then((response)=>response.json()) //return data as json object
+        if (!token) return;
+        fetch("https://movie-api-git-main-brett-ranieri.vercel.app/movies", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>response.json()) //return data as json object
         .then((data)=>{
             const moviesFromApi = data.map((doc)=>{
                 return {
@@ -27310,9 +27315,11 @@ const MainView = ()=>{
                     genreDescription: doc.Genre.Description
                 };
             });
-            setMovies(moviesFromApi); //populate movies 
+            setMovies(moviesFromApi); //populate movies
         });
-    }, []);
+    }, [
+        token
+    ]);
     if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
             onLoggedIn: (user, token)=>{
@@ -27321,12 +27328,12 @@ const MainView = ()=>{
             }
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 38,
+            lineNumber: 45,
             columnNumber: 17
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 37,
+        lineNumber: 44,
         columnNumber: 13
     }, undefined);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
@@ -27334,7 +27341,7 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 50,
+        lineNumber: 57,
         columnNumber: 13
     }, undefined) //onBackClick resets state to null, returning to MainView
     ;
@@ -27342,23 +27349,36 @@ const MainView = ()=>{
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 55,
+        lineNumber: 62,
         columnNumber: 16
     }, undefined);
     else return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                movie: movie,
-                onMovieClick: (newSelectedMovie)=>{
-                    setSelectedMovie(newSelectedMovie); //function to make the clicked movie the selected movie
-                }
-            }, movie._id, false, {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: ()=>{
+                    setUser(null);
+                    setToken(null);
+                },
+                children: "Logout"
+            }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 60,
-                columnNumber: 21
-            }, undefined))
-    }, void 0, false, {
+                lineNumber: 66,
+                columnNumber: 17
+            }, undefined),
+            movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                    movie: movie,
+                    onMovieClick: (newSelectedMovie)=>{
+                        setSelectedMovie(newSelectedMovie); //function to make the clicked movie the selected movie
+                    }
+                }, movie._id, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 68,
+                    columnNumber: 21
+                }, undefined))
+        ]
+    }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 58,
+        lineNumber: 65,
         columnNumber: 13
     }, undefined);
 };
@@ -27419,7 +27439,7 @@ const MovieCard = ({ movie , onMovieClick  })=>{
             onMovieClick(movie); //when the div is clicked, call onMovieClick from main-view and pass the props of click movie
         },
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-            children: movie.Title
+            children: movie.title
         }, void 0, false, {
             fileName: "src/components/movie-card/movie-card.jsx",
             lineNumber: 8,
@@ -27737,7 +27757,7 @@ const LoginView = ({ onLoggedIn  })=>{
                         type: "password",
                         value: password,
                         onChange: (e)=>setPassword(e.target.value),
-                        reuired: true
+                        required: true
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
                         lineNumber: 50,

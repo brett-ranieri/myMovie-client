@@ -10,7 +10,14 @@ export const MainView = () => {
     const [token, setToken] = useState(null);
 
     useEffect(() => {
-        fetch("https://movie-api-git-main-brett-ranieri.vercel.app/movies")
+
+        if (!token) {
+            return;
+        }
+
+        fetch("https://movie-api-git-main-brett-ranieri.vercel.app/movies", {
+            headers: { Authorization: `Bearer ${token}` }
+        })
             .then((response) => response.json()) //return data as json object
             .then((data) => { 
                 const moviesFromApi = data.map((doc) => { //parse data
@@ -27,10 +34,10 @@ export const MainView = () => {
                         genreDescription: doc.Genre.Description
                     };
                 });
-
-                setMovies(moviesFromApi); //populate movies 
+                
+                setMovies(moviesFromApi); //populate movies
             });
-    }, []);
+    }, [token]);
 
     if (!user) {
         return (
@@ -56,6 +63,7 @@ export const MainView = () => {
     } else {
         return (
             <div>
+                <button onClick={() => { setUser(null); setToken(null); }}>Logout</button>
                 {movies.map((movie) => (
                     <MovieCard 
                         key={movie._id} 

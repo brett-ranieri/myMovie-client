@@ -5,7 +5,7 @@ export const MovieCard = ({ movie, onMovieClick }) => { //need to destructure th
                 onMovieClick(movie); //when the div is clicked, call onMovieClick from main-view and pass the props of click movie
             }}
         >
-            <div>{movie.Title}</div>
+            <div>{movie.title}</div>
         </div>
     );
 };
