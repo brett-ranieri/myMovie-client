@@ -4,10 +4,12 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 
 export const MainView = () => {
+    const storedUser = JSON.parse(localStorage.getItem("user")); //parse stringified JSON object sent byt login-view
+    const storedToken = localStorage.getItem("token");
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null); //set useState to null so view not displayed by default
-    const [user, setUser] = useState(null);
-    const [token, setToken] = useState(null);
+    const [user, setUser] = useState(storedUser? storedUser : null); //set useState to first take storedUser info, if not, state is set to null
+    const [token, setToken] = useState(storedToken? storedToken : null);
 
     useEffect(() => {
 
@@ -63,7 +65,7 @@ export const MainView = () => {
     } else {
         return (
             <div>
-                <button onClick={() => { setUser(null); setToken(null); }}>Logout</button>
+                <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
                 {movies.map((movie) => (
                     <MovieCard 
                         key={movie._id} 
