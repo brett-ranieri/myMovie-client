@@ -1,5 +1,4 @@
-$color: steelblue;
+$primary: DarkCyan;
+$body-bg: Gray;
 
-.my-movie {
-    color: $color;
-}
+@import "../node_modules/bootstrap/scss/bootstrap";
