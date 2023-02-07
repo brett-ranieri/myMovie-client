@@ -3,8 +3,8 @@ import { Button, Card } from "react-bootstrap";
 
 export const MovieCard = ({ movie, onMovieClick }) => { //need to destructure the movie object, and the onMovieClick function from main-view
     return (
-        <Card>
-            <Card.Img variant="top" src={movie.image} />
+        <Card className="h-100">
+            <Card.Img variant="top" src={movie.imagePath} />
             <Card.Body>
                 <Card.Title>{movie.title}</Card.Title>
                 <Card.Text>{movie.genreName}</Card.Text>

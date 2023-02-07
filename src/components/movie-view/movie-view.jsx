@@ -2,7 +2,7 @@ export const MovieView = ({ movie, onBackClick }) => { //need to destructure mov
     return (
         <div>
             <div>
-                <img src={movie.imagePath} alt="movie poster" />
+                <img className="w-100" src={movie.imagePath} alt="movie poster" />
             </div>
             <div>
                 <span>Title: </span>
