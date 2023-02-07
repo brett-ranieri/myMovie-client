@@ -47,15 +47,14 @@ export const MainView = () => {
         <Row className="justify-content-md-center">
             {!user ? (
                 <Col md={5} style={{border: "1px solid green"}}>
-                    Login:
+                    <h3>Login:</h3>
                         <LoginView 
                             onLoggedIn={(user, token) => {
                             setUser(user);
                             setToken(token);
                             }}
                         />
-                    or
-                    Sign up:
+                    <h3>or Sign up:</h3>
                         <SignupView />
                 </Col>
             ) : selectedMovie ? (
@@ -72,11 +71,11 @@ export const MainView = () => {
                 <>
                 <Row className="text-end">
                     <Col>
-                        <Button className="mb-3" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
+                        <Button className="mb-3 mt-3" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
                     </Col>
                 </Row>
                     {movies.map((movie) => (
-                        <Col className="mb-5" key={movie._id} md={3}>
+                        <Col className="mb-5" key={movie._id} sm={6} md={4} lg={3}>
                                 <MovieCard 
                                     movie={movie} 
                                     onMovieClick={(newSelectedMovie) => {
