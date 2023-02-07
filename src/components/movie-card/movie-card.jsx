@@ -1,15 +1,22 @@
 import PropTypes from "prop-types";
+import { Button, Card } from "react-bootstrap";
 
 export const MovieCard = ({ movie, onMovieClick }) => { //need to destructure the movie object, and the onMovieClick function from main-view
     return (
-        <div
-            onClick={() => {
-                onMovieClick(movie); //when the div is clicked, call onMovieClick from main-view and pass the props of click movie
-                console.log(movie._id);
-            }}
-        >
-            <div>{movie.title}</div>
-        </div>
+        <Card>
+            <Card.Img variant="top" src={movie.image} />
+            <Card.Body>
+                <Card.Title>{movie.title}</Card.Title>
+                <Card.Text>{movie.genreName}</Card.Text>
+                <Button 
+                    onClick={() => {
+                        onMovieClick(movie); //when the div is clicked, call onMovieClick from main-view and pass the props of click movie
+                    }}
+                >
+                    Learn More
+                </Button>
+            </Card.Body>
+        </Card>
     );
 };
 
