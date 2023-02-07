@@ -1,5 +1,4 @@
-$color: steelblue;
+$primary: Azure;
+$body-bg: LightSlateGray;
 
-.my-movie {
-    color: $color;
-}
+@import "../node_modules/bootstrap/scss/bootstrap";
