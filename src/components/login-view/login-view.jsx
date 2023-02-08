@@ -27,7 +27,8 @@ export const LoginView = ({ onLoggedIn }) => {
 				if (data.user) {
 					localStorage.setItem("user", JSON.stringify(data.user));
 					localStorage.setItem("token", data.token);
-					onLoggedIn(data.user, data.token); //passes user and token back to MainView
+					onLoggedIn(data.user, data.token);
+					console.log(data.user); //passes user and token back to MainView
 				} else {
 					alert("No such user");
 				}
