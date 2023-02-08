@@ -1,7 +1,11 @@
+import { useParams } from "react-router";
 import { Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-export const MovieView = ({ movie, onBackClick }) => {
-	//need to destructure movie object, and onBackClick from main-view
+export const MovieView = ({ movies }) => {
+	const { movieId } = useParams();
+	const movie = movies.find((m) => m._id === movieId);
+
 	return (
 		<Col className='mt-5'>
 			<div>
@@ -52,13 +56,14 @@ export const MovieView = ({ movie, onBackClick }) => {
 				<span>{movie.genreDescription}</span>
 			</div>
 			<br />
-			<Button
-				variant='primary'
-				className='mb-5'
-				onClick={onBackClick}
-			>
-				Back
-			</Button>
+			<Link to={"/"}>
+				<Button
+					variant='primary'
+					className='mb-5'
+				>
+					Back
+				</Button>
+			</Link>
 		</Col> //button calls onBackClick function from main-view when clicked
 	);
 };
