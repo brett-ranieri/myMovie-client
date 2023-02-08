@@ -27405,7 +27405,7 @@ const MainView = ()=>{
                                 children: "The list is empty!"
                             }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                 children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                        className: "mb-5",
+                                        className: "mb-3 mt-3",
                                         sm: 6,
                                         md: 4,
                                         lg: 3,
