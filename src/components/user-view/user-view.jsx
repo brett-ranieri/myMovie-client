@@ -1,3 +1,4 @@
+import React from "react";
 import { Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -7,6 +8,14 @@ export const UserView = ({ user, users }) => {
 	return (
 		<Col className='mt-5'>
 			<div>
+				<Link to={"/users/profile/update"}>
+					<Button
+						variant='primary'
+						className='mb-5'
+					>
+						Update Information
+					</Button>
+				</Link>
 				<h5>Name: </h5>
 				<span>{thisUser.name}</span>
 			</div>
