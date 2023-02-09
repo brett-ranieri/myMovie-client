@@ -2,8 +2,7 @@ import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const MovieCard = ({ movie, onMovieClick }) => {
-	//need to destructure the movie object, and the onMovieClick function from main-view
+export const MovieCard = ({ movie }) => {
 	return (
 		<Card className='h-100'>
 			<Card.Img
@@ -34,5 +33,4 @@ MovieCard.propTypes = {
 		genreName: PropTypes.string.isRequired,
 		genreDescription: PropTypes.string.isRequired,
 	}).isRequired,
-	onMovieClick: PropTypes.func.isRequired,
 };
