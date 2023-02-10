@@ -5,6 +5,7 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { UserView } from "../user-view/user-view";
 import { UpdateView } from "../user-update/user-update";
+import { RemoveUser } from "../user-remove/user-remove";
 import { Row, Col, Button } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
@@ -198,6 +199,30 @@ export const MainView = () => {
 								) : (
 									<Col md={8}>
 										<UpdateView
+											user={user}
+											onLoggedOut={() => {
+												setUser(null);
+												setToken(null);
+												localStorage.clear();
+											}}
+										/>
+									</Col>
+								)}
+							</>
+						}
+					/>
+					<Route
+						path='/users/remove'
+						element={
+							<>
+								{!user ? (
+									<Navigate
+										to='/login'
+										replace
+									/>
+								) : (
+									<Col md={8}>
+										<RemoveUser
 											user={user}
 											onLoggedOut={() => {
 												setUser(null);

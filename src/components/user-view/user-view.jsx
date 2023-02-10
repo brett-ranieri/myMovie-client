@@ -6,14 +6,22 @@ export const UserView = ({ user, users }) => {
 	const thisUser = users.find((u) => u.username === user.Username);
 
 	return (
-		<Col className='mt-5'>
+		<Col className='mt-3'>
 			<div>
 				<Link to={"/users/profile/update"}>
 					<Button
 						variant='primary'
-						className='mb-5'
+						className='m-2 mb-3'
 					>
 						Update Information
+					</Button>
+				</Link>
+				<Link to={"/users/remove"}>
+					<Button
+						variant='danger'
+						className='m-2 mb-3'
+					>
+						Delete Account
 					</Button>
 				</Link>
 				<h5>Name: </h5>
