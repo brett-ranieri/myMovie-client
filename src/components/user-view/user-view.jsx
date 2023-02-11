@@ -1,10 +1,11 @@
 import React from "react";
-import { Col, Button } from "react-bootstrap";
+import { Col, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { FavoriteMovie } from "../movie-fav/movie-fav";
 
-export const UserView = ({ user, users }) => {
+export const UserView = ({ user, users, movies }) => {
 	const thisUser = users.find((u) => u.username === user.Username);
-
+	console.log("User: ", thisUser);
 	return (
 		<Col className='mt-3'>
 			<div>
@@ -55,6 +56,12 @@ export const UserView = ({ user, users }) => {
 					Back
 				</Button>
 			</Link>
+			<Container>
+				<FavoriteMovie
+					thisUser={thisUser}
+					movies={movies}
+				/>
+			</Container>
 		</Col> //button calls onBackClick function from main-view when clicked
 	);
 };

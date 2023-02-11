@@ -67,6 +67,7 @@ export const MainView = () => {
 						password: doc.Password,
 						email: doc.Email,
 						birthday: doc.Birthday,
+						favoriteMovies: doc.FavoriteMovies,
 					};
 				});
 
@@ -132,7 +133,10 @@ export const MainView = () => {
 									<div>The list is empty!</div>
 								) : (
 									<Col md={8}>
-										<MovieView movies={movies} />
+										<MovieView
+											movies={movies}
+											user={user}
+										/>
 									</Col>
 								)}
 							</>
@@ -181,6 +185,7 @@ export const MainView = () => {
 										<UserView
 											user={user}
 											users={users}
+											movies={movies}
 										/>
 									</Col>
 								)}

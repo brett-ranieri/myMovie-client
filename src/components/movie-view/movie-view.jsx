@@ -1,13 +1,74 @@
+import { useState } from "react";
 import { useParams } from "react-router";
 import { Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const MovieView = ({ movies }) => {
+export const MovieView = ({ movies, user }) => {
 	const { movieId } = useParams();
 	const movie = movies.find((m) => m._id === movieId);
+	const storedToken = localStorage.getItem("token");
+	const [token] = useState(storedToken ? storedToken : null);
 	console.log(movieId);
+	console.log(user);
+
+	const addFavMovie = async (event) => {
+		event.preventDefault();
+
+		await fetch(
+			`https://movie-api-git-main-brett-ranieri.vercel.app/users/${user.Username}/movies/${movieId}`,
+			{
+				method: "PUT",
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		)
+			.then(() => {
+				alert("Movie successfully added to your favorites!");
+			})
+			.catch((error) => {
+				console.error(error);
+				res.status(500).send("Error: ", error);
+			});
+	};
+
+	const removeFavMovie = async (event) => {
+		event.preventDefault();
+
+		await fetch(
+			`https://movie-api-git-main-brett-ranieri.vercel.app/users/${user.Username}/remove/${movieId}`,
+			{
+				method: "DELETE",
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		)
+			.then(() => {
+				alert("Movie successfully removed from your favorites.");
+			})
+			.catch((error) => {
+				console.error(error);
+				res.status(500).send("Error: ", error);
+			});
+	};
+
 	return (
 		<Col className='mt-5'>
+			<Button
+				variant='secondary'
+				className='m-2'
+				onClick={(event) => addFavMovie(event)}
+			>
+				Add to Favorites
+			</Button>
+			<Button
+				variant='warning'
+				className='m-2'
+				onClick={(event) => removeFavMovie(event)}
+			>
+				Remove from Favorites
+			</Button>
 			<div>
 				<img
 					className='w-100'
