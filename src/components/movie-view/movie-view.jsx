@@ -11,6 +11,12 @@ export const MovieView = ({ movies, user }) => {
 	console.log(movieId);
 	console.log(user);
 
+	window.onbeforeunload = function () {
+		window.scrollTo(0, 0);
+		console.log("window");
+	};
+	window.onbeforeunload();
+
 	const addFavMovie = async (event) => {
 		event.preventDefault();
 
