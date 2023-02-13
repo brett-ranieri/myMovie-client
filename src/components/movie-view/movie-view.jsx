@@ -25,6 +25,7 @@ export const MovieView = ({ movies, user }) => {
 		)
 			.then(() => {
 				alert("Movie successfully added to your favorites!");
+				location.reload();
 			})
 			.catch((error) => {
 				console.error(error);
@@ -46,6 +47,7 @@ export const MovieView = ({ movies, user }) => {
 		)
 			.then(() => {
 				alert("Movie successfully removed from your favorites.");
+				location.reload();
 			})
 			.catch((error) => {
 				console.error(error);
