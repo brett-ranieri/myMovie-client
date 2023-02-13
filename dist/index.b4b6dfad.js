@@ -47296,7 +47296,17 @@ const UpdateView = ({ user , onLoggedOut  })=>{
             Birthday: birthday
         };
         console.log("Form input: ", data);
-        console.log(JSON.stringify(data));
+        console.log(data.Username);
+        let review = (data)=>{
+            if (!data.Username) delete data.Username;
+            if (!data.Password) delete data.Password;
+            if (!data.Name) delete data.Name;
+            if (!data.Email) delete data.Email;
+            if (!data.Birthday) delete data.Birthday;
+            return data;
+        };
+        review(data);
+        console.log("reviewed: ", data);
         const updateUser = await fetch(`https://movie-api-git-main-brett-ranieri.vercel.app/users/${user.Username}`, {
             method: "PUT",
             body: JSON.stringify(data),
@@ -47317,7 +47327,7 @@ const UpdateView = ({ user , onLoggedOut  })=>{
                 children: "UPDATE!?!?!?!"
             }, void 0, false, {
                 fileName: "src/components/user-update/user-update.jsx",
-                lineNumber: 51,
+                lineNumber: 73,
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
@@ -47329,7 +47339,7 @@ const UpdateView = ({ user , onLoggedOut  })=>{
                                 children: "Username:"
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 54,
+                                lineNumber: 76,
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -47341,13 +47351,13 @@ const UpdateView = ({ user , onLoggedOut  })=>{
                                 disabled: username === user.Username
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 55,
+                                lineNumber: 77,
                                 columnNumber: 6
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/user-update/user-update.jsx",
-                        lineNumber: 53,
+                        lineNumber: 75,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -47356,7 +47366,7 @@ const UpdateView = ({ user , onLoggedOut  })=>{
                                 children: "Password:"
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 65,
+                                lineNumber: 87,
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -47367,13 +47377,13 @@ const UpdateView = ({ user , onLoggedOut  })=>{
                                 disabled: password === user.Password
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 66,
+                                lineNumber: 88,
                                 columnNumber: 6
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/user-update/user-update.jsx",
-                        lineNumber: 64,
+                        lineNumber: 86,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -47382,7 +47392,7 @@ const UpdateView = ({ user , onLoggedOut  })=>{
                                 children: "Name:"
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 75,
+                                lineNumber: 97,
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -47393,13 +47403,13 @@ const UpdateView = ({ user , onLoggedOut  })=>{
                                 disabled: name === user.Name
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 76,
+                                lineNumber: 98,
                                 columnNumber: 6
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/user-update/user-update.jsx",
-                        lineNumber: 74,
+                        lineNumber: 96,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -47408,7 +47418,7 @@ const UpdateView = ({ user , onLoggedOut  })=>{
                                 children: "Email:"
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 85,
+                                lineNumber: 107,
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -47418,13 +47428,13 @@ const UpdateView = ({ user , onLoggedOut  })=>{
                                 disabled: email === user.Email
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 86,
+                                lineNumber: 108,
                                 columnNumber: 6
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/user-update/user-update.jsx",
-                        lineNumber: 84,
+                        lineNumber: 106,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -47433,7 +47443,7 @@ const UpdateView = ({ user , onLoggedOut  })=>{
                                 children: "Birthday:"
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 94,
+                                lineNumber: 116,
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -47443,13 +47453,13 @@ const UpdateView = ({ user , onLoggedOut  })=>{
                                 disabled: birthday === user.Birthday
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 95,
+                                lineNumber: 117,
                                 columnNumber: 6
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/user-update/user-update.jsx",
-                        lineNumber: 93,
+                        lineNumber: 115,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -47459,19 +47469,19 @@ const UpdateView = ({ user , onLoggedOut  })=>{
                         children: "Submit"
                     }, void 0, false, {
                         fileName: "src/components/user-update/user-update.jsx",
-                        lineNumber: 102,
+                        lineNumber: 124,
                         columnNumber: 5
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/user-update/user-update.jsx",
-                lineNumber: 52,
+                lineNumber: 74,
                 columnNumber: 4
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/user-update/user-update.jsx",
-        lineNumber: 50,
+        lineNumber: 72,
         columnNumber: 3
     }, undefined);
 };
