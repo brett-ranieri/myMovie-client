@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-export const MovieCard = ({ movie, onMovieClick }) => {
-	//need to destructure the movie object, and the onMovieClick function from main-view
+export const MovieCard = ({ movie }) => {
 	return (
 		<Card className='h-100'>
 			<Card.Img
@@ -12,13 +12,9 @@ export const MovieCard = ({ movie, onMovieClick }) => {
 			<Card.Body>
 				<Card.Title>{movie.title}</Card.Title>
 				<Card.Text>{movie.genreName}</Card.Text>
-				<Button
-					onClick={() => {
-						onMovieClick(movie); //when the div is clicked, call onMovieClick from main-view and pass the props of click movie
-					}}
-				>
-					Learn More
-				</Button>
+				<Link to={`/movies/${encodeURIComponent(movie._id)}`}>
+					<Button variant='primary'>Details</Button>
+				</Link>
 			</Card.Body>
 		</Card>
 	);
@@ -37,5 +33,4 @@ MovieCard.propTypes = {
 		genreName: PropTypes.string.isRequired,
 		genreDescription: PropTypes.string.isRequired,
 	}).isRequired,
-	onMovieClick: PropTypes.func.isRequired,
 };
