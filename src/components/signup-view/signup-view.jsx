@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
-export const SignupView = (redirect) => {
+export const SignupView = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [name, setName] = useState("");
@@ -45,7 +45,10 @@ export const SignupView = (redirect) => {
 	};
 
 	return (
-		<Form onSubmit={handleSubmit}>
+		<Form
+			onSubmit={handleSubmit}
+			className='mb-3 mt-3'
+		>
 			<Form.Group>
 				<Form.Label>Username:</Form.Label>
 				<Form.Control

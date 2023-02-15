@@ -62,7 +62,7 @@ export const MovieView = ({ movies, user }) => {
 	};
 
 	return (
-		<Col className='mt-5'>
+		<Col className='mt-3 mb-3'>
 			<Button
 				variant='secondary'
 				className='m-2'

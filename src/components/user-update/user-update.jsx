@@ -69,8 +69,15 @@ export const UpdateView = ({ user, onLoggedOut }) => {
 	};
 
 	return (
-		<Col>
-			<h1>UPDATE!?!?!?!</h1>
+		<Col className='mb-3 mt-3'>
+			<h3>Looking to update your info?</h3>
+			<p>
+				Add the new info desired to any field in the form below and click
+				Submit!
+				<br />
+				It's just that easy.
+			</p>
+
 			<Form onSubmit={handleUpdate}>
 				<Form.Group>
 					<Form.Label>Username:</Form.Label>
@@ -80,36 +87,35 @@ export const UpdateView = ({ user, onLoggedOut }) => {
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						minLength='5'
-						disabled={username === user.Username}
 					/>
 				</Form.Group>
 				<Form.Group>
 					<Form.Label>Password:</Form.Label>
 					<Form.Control
 						type='password'
+						placeholder='Enter new Password'
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 						minLength='5'
-						disabled={password === user.Password}
 					/>
 				</Form.Group>
 				<Form.Group>
 					<Form.Label>Name:</Form.Label>
 					<Form.Control
 						type='text'
+						placeholder='Enter new Name'
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 						minLength='3'
-						disabled={name === user.Name}
 					/>
 				</Form.Group>
 				<Form.Group>
 					<Form.Label>Email:</Form.Label>
 					<Form.Control
 						type='email'
+						placeholder='Enter new Email'
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
-						disabled={email === user.Email}
 					/>
 				</Form.Group>
 				<Form.Group>
@@ -118,7 +124,6 @@ export const UpdateView = ({ user, onLoggedOut }) => {
 						type='date'
 						value={birthday}
 						onChange={(e) => setBirthday(e.target.value)}
-						disabled={birthday === user.Birthday}
 					/>
 				</Form.Group>
 				<Button

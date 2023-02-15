@@ -26,10 +26,10 @@ export const RemoveUser = ({ user, onLoggedOut }) => {
 	};
 
 	return (
-		<Col className='mt-5'>
+		<Col className='mt-3 mb-3'>
 			<h3>Are you sure you want to delete your account?</h3>
 			<p>
-				This is permenant and all information associated with this account will
+				This is permanant and all information associated with this account will
 				never be accesible again.
 			</p>
 			<p>Click confirm to delete account.</p>

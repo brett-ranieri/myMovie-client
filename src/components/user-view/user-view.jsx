@@ -28,14 +28,10 @@ export const UserView = ({ user, users, movies }) => {
 				<h5>Name: </h5>
 				<span>{thisUser.name}</span>
 			</div>
+			<br />
 			<div>
 				<h5>Username: </h5>
 				<span>{thisUser.username}</span>
-			</div>
-			<br />
-			<div>
-				<h5>Password: </h5>
-				<span>{thisUser.password}</span>
 			</div>
 			<br />
 			<div>
