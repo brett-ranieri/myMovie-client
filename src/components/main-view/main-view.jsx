@@ -17,6 +17,7 @@ export const MainView = () => {
 	const [users, setUsers] = useState([]);
 	const [user, setUser] = useState(storedUser ? storedUser : null); //set useState to first take storedUser info, if not, state is set to null
 	const [token, setToken] = useState(storedToken ? storedToken : null);
+	const [filteredMovies, setFilteredMovies] = useState([]);
 
 	useEffect(() => {
 		if (!token) {
@@ -75,6 +76,28 @@ export const MainView = () => {
 			});
 	}, [token]);
 
+	useEffect(() => {
+		setFilteredMovies(movies);
+		console.log("Initial Movies: ", filteredMovies);
+	}, [movies]);
+
+	const searchResult = async (text) => {
+		console.log("searched for: ", text);
+		let searchFilter = movies.filter((m) =>
+			m.title.toLowerCase().includes(text)
+		);
+		console.log("filtered results: ", searchFilter);
+		setFilteredMovies(searchFilter);
+	};
+
+	// const searchResults = async () => {
+	// 	console.log(searchText);
+	// 	console.log(movies);
+	// 	let searchFilter = movies.filter((m) => m.title.includes(searchText));
+	// 	console.log(searchFilter);
+	// 	return searchFilter;
+	// };
+
 	return (
 		<BrowserRouter>
 			<NavigationBar
@@ -84,6 +107,7 @@ export const MainView = () => {
 					setToken(null);
 					localStorage.clear();
 				}}
+				onSearch={searchResult}
 			/>
 			<Row className='justify-content-md-center'>
 				<Routes>
@@ -155,7 +179,7 @@ export const MainView = () => {
 									<div>The list is empty!</div>
 								) : (
 									<>
-										{movies.map((movie) => (
+										{filteredMovies.map((movie) => (
 											<Col
 												className='mb-3 mt-3'
 												key={movie._id}

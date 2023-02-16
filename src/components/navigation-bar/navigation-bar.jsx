@@ -1,7 +1,17 @@
-import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Button } from "react-bootstrap";
+import { Container, Nav, Navbar, Form } from "react-bootstrap";
+import { createSearchParams, Link } from "react-router-dom";
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
+	const [searchText, setSearchText] = useState("");
+
+	const handleSearch = async () => {
+		let handledText = searchText.toLowerCase();
+		console.log(handledText);
+		onSearch(handledText);
+	};
+
 	return (
 		<Navbar bg='light'>
 			<Container>
@@ -45,6 +55,22 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 									Profile
 								</Nav.Link>
 								<Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
+								<Form>
+									<Form.Control
+										onChange={(e) => setSearchText(e.target.value)}
+										value={searchText}
+										type='search'
+										placeholder='Search'
+										className='me-2'
+										aria-label='Search'
+									/>
+									<Button
+										variant='primary'
+										onClick={handleSearch}
+									>
+										Search
+									</Button>
+								</Form>
 							</>
 						)}
 					</Nav>
