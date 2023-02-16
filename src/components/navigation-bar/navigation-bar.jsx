@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Container, Nav, Navbar, Form } from "react-bootstrap";
-import { createSearchParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
 	const [searchText, setSearchText] = useState("");
@@ -12,12 +12,18 @@ export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
 		onSearch(handledText);
 	};
 
+	const clearSearch = async () => {
+		setSearchText("");
+		onSearch("");
+	};
+
 	return (
 		<Navbar bg='light'>
 			<Container>
 				<Navbar.Brand
 					as={Link}
 					to='/'
+					onClick={clearSearch}
 				>
 					myMovie App
 				</Navbar.Brand>
@@ -45,6 +51,7 @@ export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
 								<Nav.Link
 									as={Link}
 									to='/'
+									onClick={clearSearch}
 								>
 									Home
 								</Nav.Link>
@@ -55,7 +62,7 @@ export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
 									Profile
 								</Nav.Link>
 								<Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
-								<Form>
+								<Form className='d-flex align-items-end'>
 									<Form.Control
 										onChange={(e) => setSearchText(e.target.value)}
 										value={searchText}
@@ -67,8 +74,18 @@ export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
 									<Button
 										variant='primary'
 										onClick={handleSearch}
+										as={Link}
+										to='/'
+										className='me-2'
 									>
 										Search
+									</Button>
+									<Button
+										variant='danger'
+										onClick={clearSearch}
+										className='me-2'
+									>
+										Reset
 									</Button>
 								</Form>
 							</>

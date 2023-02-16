@@ -18,6 +18,7 @@ export const MainView = () => {
 	const [user, setUser] = useState(storedUser ? storedUser : null); //set useState to first take storedUser info, if not, state is set to null
 	const [token, setToken] = useState(storedToken ? storedToken : null);
 	const [filteredMovies, setFilteredMovies] = useState([]);
+	const [searchText, setSearchText] = useState("");
 
 	useEffect(() => {
 		if (!token) {
@@ -76,6 +77,7 @@ export const MainView = () => {
 			});
 	}, [token]);
 
+	/////////////////////// Start of Movie Filtering ///////////////////////////////////
 	useEffect(() => {
 		setFilteredMovies(movies);
 		console.log("Initial Movies: ", filteredMovies);
@@ -90,13 +92,11 @@ export const MainView = () => {
 		setFilteredMovies(searchFilter);
 	};
 
-	// const searchResults = async () => {
-	// 	console.log(searchText);
-	// 	console.log(movies);
-	// 	let searchFilter = movies.filter((m) => m.title.includes(searchText));
-	// 	console.log(searchFilter);
-	// 	return searchFilter;
-	// };
+	const clearSearch = async () => {
+		console.log("second step");
+		searchResult("");
+		setSearchText("");
+	};
 
 	return (
 		<BrowserRouter>
@@ -175,8 +175,8 @@ export const MainView = () => {
 										to='/login'
 										replace
 									/>
-								) : movies.length === 0 ? (
-									<div>The list is empty!</div>
+								) : filteredMovies.length === 0 ? (
+									<div>Nothing matched your search. Please try again</div>
 								) : (
 									<>
 										{filteredMovies.map((movie) => (
@@ -187,7 +187,10 @@ export const MainView = () => {
 												md={4}
 												lg={3}
 											>
-												<MovieCard movie={movie} />
+												<MovieCard
+													movie={movie}
+													clearSearch={clearSearch}
+												/>
 											</Col>
 										))}
 									</>
