@@ -2,20 +2,30 @@ import { useState } from "react";
 import { useParams } from "react-router";
 import { Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { MovieCard } from "../movie-card/movie-card";
 
 export const MovieView = ({ movies, user }) => {
 	const { movieId } = useParams();
 	const movie = movies.find((m) => m._id === movieId);
 	const storedToken = localStorage.getItem("token");
 	const [token] = useState(storedToken ? storedToken : null);
-	console.log(movieId);
-	console.log(user);
 
 	window.onbeforeunload = function () {
 		window.scrollTo(0, 0);
-		console.log("window");
 	};
 	window.onbeforeunload();
+
+	let filteredMovies = [];
+
+	const filterByGenre = (genre, id) => {
+		let filteredMovies = movies.filter(
+			(m) => m.genreName === genre && m._id !== id
+		);
+		return filteredMovies;
+	};
+
+	filterByGenre(movie.genreName, movie._id);
+	console.log("filtered: ", filteredMovies);
 
 	const addFavMovie = async (event) => {
 		event.preventDefault();
@@ -125,6 +135,20 @@ export const MovieView = ({ movies, user }) => {
 				<span>{movie.genreDescription}</span>
 			</div>
 			<br />
+			<>
+				<h3>Similar Movies:</h3>
+				{filterByGenre(movie.genreName, movie._id).map((movie) => (
+					<Col
+						className='mb-3 mt-3'
+						key={movie._id}
+						sm={6}
+						md={4}
+						lg={3}
+					>
+						<MovieCard movie={movie} />
+					</Col>
+				))}
+			</>
 			<Link to={"/"}>
 				<Button
 					variant='primary'
