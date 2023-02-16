@@ -15,16 +15,12 @@ export const MovieView = ({ movies, user }) => {
 	};
 	window.onbeforeunload();
 
-	let filteredMovies = [];
-
 	const filterByGenre = (genre, id) => {
-		let filteredMovies = movies.filter(
-			(m) => m.genreName === genre && m._id !== id
-		);
-		return filteredMovies;
+		filterMovies = movies.filter((m) => m.genreName === genre && m._id !== id);
+		return filterMovies;
 	};
 
-	filterByGenre(movie.genreName, movie._id);
+	let filteredMovies = filterByGenre(movie.genreName, movie._id);
 	console.log("filtered: ", filteredMovies);
 
 	const addFavMovie = async (event) => {
@@ -137,7 +133,7 @@ export const MovieView = ({ movies, user }) => {
 			<br />
 			<>
 				<h3>Similar Movies:</h3>
-				{filterByGenre(movie.genreName, movie._id).map((movie) => (
+				{filteredMovies.map((movie) => (
 					<Col
 						className='mb-3 mt-3'
 						key={movie._id}
