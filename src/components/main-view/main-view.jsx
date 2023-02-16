@@ -18,7 +18,6 @@ export const MainView = () => {
 	const [user, setUser] = useState(storedUser ? storedUser : null); //set useState to first take storedUser info, if not, state is set to null
 	const [token, setToken] = useState(storedToken ? storedToken : null);
 	const [filteredMovies, setFilteredMovies] = useState([]);
-	const [searchText, setSearchText] = useState("");
 
 	useEffect(() => {
 		if (!token) {
@@ -95,7 +94,6 @@ export const MainView = () => {
 	const clearSearch = async () => {
 		console.log("second step");
 		searchResult("");
-		setSearchText("");
 	};
 
 	return (
