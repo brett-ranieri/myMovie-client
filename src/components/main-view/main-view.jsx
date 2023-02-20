@@ -11,13 +11,23 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 
 export const MainView = () => {
-	const storedUser = JSON.parse(localStorage.getItem("user")); //parse stringified JSON object sent byt login-view
+	const storedUsername = localStorage.getItem("username");
 	const storedToken = localStorage.getItem("token");
 	const [movies, setMovies] = useState([]);
-	const [users, setUsers] = useState([]);
-	const [user, setUser] = useState(storedUser ? storedUser : null); //set useState to first take storedUser info, if not, state is set to null
+	const [user, setUser] = useState({
+		_id: "",
+		name: "",
+		username: "",
+		password: "",
+		email: "",
+		favoriteMovies: [],
+	});
+	const [username, setUsername] = useState(
+		storedUsername ? storedUsername : null
+	);
 	const [token, setToken] = useState(storedToken ? storedToken : null);
 	const [filteredMovies, setFilteredMovies] = useState([]);
+	const [favoriteMovies, setFavoriteMovies] = useState([]);
 
 	useEffect(() => {
 		if (!token) {
@@ -54,46 +64,100 @@ export const MainView = () => {
 			return;
 		}
 
-		fetch("https://movie-api-git-main-brett-ranieri.vercel.app/users", {
-			headers: { Authorization: `Bearer ${token}` },
-		})
-			.then((response) => response.json()) //return data as json object
-			.then((data) => {
-				const usersFromApi = data.map((doc) => {
-					//parse data
-					return {
-						user_id: doc._id,
-						name: doc.Name,
-						username: doc.Username,
-						password: doc.Password,
-						email: doc.Email,
-						birthday: doc.Birthday,
-						favoriteMovies: doc.FavoriteMovies,
-					};
+		const getUser = (username) => {
+			fetch(
+				`https://movie-api-git-main-brett-ranieri.vercel.app/users/${username}`,
+				{
+					headers: { Authorization: `Bearer ${token}` },
+				}
+			)
+				.then((response) => response.json()) //return data as json object
+				.then((data) => {
+					setUser({ ...data }); //populate movies
 				});
+		};
+		getUser(username);
+	}, [token, username]);
 
-				setUsers(usersFromApi); //populate movies
-			});
-	}, [token]);
+	// useEffect(() => {
+	// 	console.log("Main User: ", user);
+	// 	console.log("Favorite Movies: ", favoriteMovies);
+	// 	// console.log("Stored Username: ", storedUsername);
+	// 	// console.log(storedToken);
+	// });
 
 	/////////////////////// Start of Movie Filtering ///////////////////////////////////
 	useEffect(() => {
 		setFilteredMovies(movies);
-		console.log("Initial Movies: ", filteredMovies);
 	}, [movies]);
 
 	const searchResult = async (text) => {
-		console.log("searched for: ", text);
 		let searchFilter = movies.filter((m) =>
 			m.title.toLowerCase().includes(text)
 		);
-		console.log("filtered results: ", searchFilter);
 		setFilteredMovies(searchFilter);
 	};
 
 	const clearSearch = async () => {
 		console.log("second step");
 		searchResult("");
+	};
+	////////////////////////// End of Movie Filtering ///////////////////////////////////////
+	///////////////////////// Start of Movie Favorites ///////////////////////////////////////
+
+	useEffect(() => {
+		if (!user) {
+			return;
+		}
+
+		const favList = movies.filter((movie) =>
+			user.FavoriteMovies.includes(movie._id)
+		);
+		setFavoriteMovies(favList);
+	}, [movies, user]); //initially loads favList from API, populates with full object so includes array method will work later (unable to use includes on just _id)
+
+	const isFavorite = async (movie) => {
+		console.log("in func: ", favoriteMovies);
+		console.log(movie);
+		if (favoriteMovies.includes(movie)) {
+			console.log("already a fav");
+			removeFavMovie(movie._id);
+			setFavoriteMovies(favoriteMovies.filter((m) => m._id !== movie._id));
+		} else {
+			console.log("not a fav");
+			addFavMovie(movie._id);
+			setFavoriteMovies([...favoriteMovies, movie]); //...is spread operator, allows a quick copy of an existing array or object
+		}
+	};
+
+	const addFavMovie = async (movieId) => {
+		await fetch(
+			`https://movie-api-git-main-brett-ranieri.vercel.app/users/${user.Username}/movies/${movieId}`,
+			{
+				method: "PUT",
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		).catch((error) => {
+			console.error(error);
+			res.status(500).send("Error: ", error);
+		});
+	};
+
+	const removeFavMovie = async (movieId) => {
+		await fetch(
+			`https://movie-api-git-main-brett-ranieri.vercel.app/users/${user.Username}/remove/${movieId}`,
+			{
+				method: "DELETE",
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		).catch((error) => {
+			console.error(error);
+			res.status(500).send("Error: ", error);
+		});
 	};
 
 	return (
@@ -132,8 +196,8 @@ export const MainView = () => {
 								) : (
 									<Col md={5}>
 										<LoginView
-											onLoggedIn={(user, token) => {
-												setUser(user);
+											onLoggedIn={(username, token) => {
+												setUsername(username);
 												setToken(token);
 											}}
 										/>
@@ -188,6 +252,7 @@ export const MainView = () => {
 												<MovieCard
 													movie={movie}
 													clearSearch={clearSearch}
+													isFavorite={isFavorite}
 												/>
 											</Col>
 										))}
@@ -208,9 +273,8 @@ export const MainView = () => {
 								) : (
 									<Col md={8}>
 										<UserView
+											favoriteMovies={favoriteMovies}
 											user={user}
-											users={users}
-											movies={movies}
 										/>
 									</Col>
 								)}

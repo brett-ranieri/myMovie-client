@@ -1,19 +1,10 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const FavoriteMovie = ({ thisUser, movies }) => {
-	const storedToken = localStorage.getItem("token");
-	const [token] = useState(storedToken ? storedToken : null);
-
-	let favoriteMovies = movies.filter((m) =>
-		thisUser.favoriteMovies.includes(m._id)
-	);
-
-	console.log("Fav Movies: ", favoriteMovies);
-
+export const FavoriteMovie = ({ favoriteMovies }) => {
 	return (
 		<Col>
 			<>

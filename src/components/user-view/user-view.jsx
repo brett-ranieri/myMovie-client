@@ -3,9 +3,7 @@ import { Col, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FavoriteMovie } from "../movie-fav/movie-fav";
 
-export const UserView = ({ user, users, movies }) => {
-	const thisUser = users.find((u) => u.username === user.Username);
-	console.log("User: ", thisUser);
+export const UserView = ({ user, favoriteMovies }) => {
 	return (
 		<Col className='mt-3'>
 			<div>
@@ -26,22 +24,22 @@ export const UserView = ({ user, users, movies }) => {
 					</Button>
 				</Link>
 				<h5>Name: </h5>
-				<span>{thisUser.name}</span>
+				<span>{user.Name}</span>
 			</div>
 			<br />
 			<div>
 				<h5>Username: </h5>
-				<span>{thisUser.username}</span>
+				<span>{user.Username}</span>
 			</div>
 			<br />
 			<div>
 				<h5>Email: </h5>
-				<span>{thisUser.email}</span>
+				<span>{user.Email}</span>
 			</div>
 			<br />
 			<div>
 				<h5>Birthday: </h5>
-				<span>{thisUser.birthday}</span>
+				<span>{user.Birthday}</span>
 			</div>
 			<br />
 			<Link to={"/"}>
@@ -53,10 +51,7 @@ export const UserView = ({ user, users, movies }) => {
 				</Button>
 			</Link>
 			<Container>
-				<FavoriteMovie
-					thisUser={thisUser}
-					movies={movies}
-				/>
+				<FavoriteMovie favoriteMovies={favoriteMovies} />
 			</Container>
 		</Col> //button calls onBackClick function from main-view when clicked
 	);

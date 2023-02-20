@@ -23,66 +23,8 @@ export const MovieView = ({ movies, user }) => {
 	let filteredMovies = filterByGenre(movie.genreName, movie._id);
 	console.log("filtered: ", filteredMovies);
 
-	const addFavMovie = async (event) => {
-		event.preventDefault();
-
-		await fetch(
-			`https://movie-api-git-main-brett-ranieri.vercel.app/users/${user.Username}/movies/${movieId}`,
-			{
-				method: "PUT",
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			}
-		)
-			.then(() => {
-				alert("Movie successfully added to your favorites!");
-				location.reload();
-			})
-			.catch((error) => {
-				console.error(error);
-				res.status(500).send("Error: ", error);
-			});
-	};
-
-	const removeFavMovie = async (event) => {
-		event.preventDefault();
-
-		await fetch(
-			`https://movie-api-git-main-brett-ranieri.vercel.app/users/${user.Username}/remove/${movieId}`,
-			{
-				method: "DELETE",
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			}
-		)
-			.then(() => {
-				alert("Movie successfully removed from your favorites.");
-				location.reload();
-			})
-			.catch((error) => {
-				console.error(error);
-				res.status(500).send("Error: ", error);
-			});
-	};
-
 	return (
 		<Col className='mt-3 mb-3'>
-			<Button
-				variant='secondary'
-				className='m-2'
-				onClick={(event) => addFavMovie(event)}
-			>
-				Add to Favorites
-			</Button>
-			<Button
-				variant='warning'
-				className='m-2'
-				onClick={(event) => removeFavMovie(event)}
-			>
-				Remove from Favorites
-			</Button>
 			<div>
 				<img
 					className='w-100'

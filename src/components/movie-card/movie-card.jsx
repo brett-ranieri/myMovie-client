@@ -2,10 +2,14 @@ import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const MovieCard = ({ movie, clearSearch }) => {
+export const MovieCard = ({ movie, clearSearch, isFavorite }) => {
 	const clearMovies = async () => {
 		console.log("first step");
 		clearSearch();
+	};
+
+	const clicked = async () => {
+		isFavorite(movie);
 	};
 
 	return (
@@ -17,6 +21,12 @@ export const MovieCard = ({ movie, clearSearch }) => {
 			<Card.Body>
 				<Card.Title>{movie.title}</Card.Title>
 				<Card.Text>{movie.genreName}</Card.Text>
+				<Button
+					variant='danger'
+					onClick={clicked}
+				>
+					Favorite
+				</Button>
 				<Link to={`/movies/${encodeURIComponent(movie._id)}`}>
 					<Button
 						variant='primary'
