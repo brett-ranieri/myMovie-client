@@ -6,22 +6,16 @@ import { SignupView } from "../signup-view/signup-view";
 import { UserView } from "../user-view/user-view";
 import { UpdateView } from "../user-update/user-update";
 import { RemoveUser } from "../user-remove/user-remove";
-import { Row, Col, Button } from "react-bootstrap";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Row, Col, Button, Form, Container } from "react-bootstrap";
+import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 
 export const MainView = () => {
 	const storedUsername = localStorage.getItem("username");
 	const storedToken = localStorage.getItem("token");
+	const storedUser = localStorage.getItem("user");
 	const [movies, setMovies] = useState([]);
-	const [user, setUser] = useState({
-		_id: "",
-		name: "",
-		username: "",
-		password: "",
-		email: "",
-		favoriteMovies: [],
-	});
+	const [user, setUser] = useState(storedUser ? storedUser : null);
 	const [username, setUsername] = useState(
 		storedUsername ? storedUsername : null
 	);
@@ -87,21 +81,21 @@ export const MainView = () => {
 	// });
 
 	/////////////////////// Start of Movie Filtering ///////////////////////////////////
-	useEffect(() => {
-		setFilteredMovies(movies);
-	}, [movies]);
+	// useEffect(() => {
+	// 	setFilteredMovies(movies);
+	// }, [movies]);
 
-	const searchResult = async (text) => {
-		let searchFilter = movies.filter((m) =>
-			m.title.toLowerCase().includes(text)
-		);
-		setFilteredMovies(searchFilter);
-	};
+	// const searchResult = async (text) => {
+	// 	let searchFilter = movies.filter((m) =>
+	// 		m.title.toLowerCase().includes(text)
+	// 	);
+	// 	setFilteredMovies(searchFilter);
+	// };
 
-	const clearSearch = async () => {
-		console.log("second step");
-		searchResult("");
-	};
+	// const clearSearch = async () => {
+	// 	console.log("second step");
+	// 	searchResult("");
+	// };
 	////////////////////////// End of Movie Filtering ///////////////////////////////////////
 	///////////////////////// Start of Movie Favorites ///////////////////////////////////////
 
@@ -159,6 +153,48 @@ export const MainView = () => {
 			res.status(500).send("Error: ", error);
 		});
 	};
+	////////////////////////////// End of Movie Favorites //////////////////////////////////////
+	/////////////////////////////// Start Search Feature /////////////////////////////////////
+
+	const [searchText, setSearchText] = useState("");
+
+	useEffect(() => {
+		setFilteredMovies(movies);
+	}, [movies]);
+
+	const searchResult = async (text) => {
+		let searchFilter = movies.filter((m) =>
+			m.title.toLowerCase().includes(text)
+		);
+		setFilteredMovies(searchFilter);
+	};
+
+	const clearSearch = async () => {
+		setSearchText("");
+		searchResult("");
+	};
+
+	const handleSearch = async () => {
+		let handledText = searchText.toLowerCase();
+		console.log(handledText);
+		searchResult(handledText);
+	};
+
+	const handleKeyDown = async (event) => {
+		if (event.key === "Enter") {
+			event.preventDefault();
+			handleSearch();
+		}
+	};
+
+	// const Input = () => {
+	// 	const handleKeyDown = (event) => {
+	// 		if (event.key === "enter") {
+	// 			console.log("pressed it");
+	// 		}
+	// 	};
+	// 	return <input onKeyDown={handleKeyDown} />;
+	// };
 
 	return (
 		<BrowserRouter>
@@ -169,7 +205,7 @@ export const MainView = () => {
 					setToken(null);
 					localStorage.clear();
 				}}
-				onSearch={searchResult}
+				clearSearch={clearSearch}
 			/>
 			<Row className='justify-content-md-center'>
 				<Routes>
@@ -237,10 +273,85 @@ export const MainView = () => {
 										to='/login'
 										replace
 									/>
+								) : movies.length === 0 ? (
+									<div>The list is empty!</div>
 								) : filteredMovies.length === 0 ? (
-									<div>Nothing matched your search. Please try again</div>
+									<>
+										<Row>
+											<Col
+												md={8}
+												className='mt-4'
+											>
+												<Form className='d-flex align-items-end'>
+													<Form.Control
+														onChange={(e) => setSearchText(e.target.value)}
+														value={searchText}
+														type='search'
+														placeholder='Search Movies'
+														className='me-2'
+														aria-label='Search'
+														onKeyDown={handleKeyDown}
+													/>
+													<Button
+														variant='primary'
+														onClick={handleSearch}
+														as={Link}
+														to='/'
+														className='me-2'
+														type='submit'
+													>
+														Search
+													</Button>
+													<Button
+														variant='danger'
+														onClick={clearSearch}
+														className='me-2'
+													>
+														Clear
+													</Button>
+												</Form>
+											</Col>
+										</Row>
+										<h5>Nothing matched your search. Please try again</h5>
+									</>
 								) : (
 									<>
+										<Row>
+											<Col
+												md={8}
+												className='mt-4'
+											>
+												<Form className='d-flex align-items-end'>
+													<Form.Control
+														onChange={(e) => setSearchText(e.target.value)}
+														value={searchText}
+														type='search'
+														placeholder='Search Movies'
+														className='me-2'
+														aria-label='Search'
+														onKeyDown={handleKeyDown}
+													/>
+													<Button
+														variant='primary'
+														onClick={handleSearch}
+														as={Link}
+														to='/'
+														className='me-2'
+														type='submit'
+													>
+														Search
+													</Button>
+													<Button
+														variant='danger'
+														onClick={clearSearch}
+														className='me-2'
+													>
+														Clear
+													</Button>
+												</Form>
+											</Col>
+										</Row>
+
 										{filteredMovies.map((movie) => (
 											<Col
 												className='mb-3 mt-3'

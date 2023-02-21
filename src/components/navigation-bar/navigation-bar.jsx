@@ -3,20 +3,7 @@ import { Button } from "react-bootstrap";
 import { Container, Nav, Navbar, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
-	const [searchText, setSearchText] = useState("");
-
-	const handleSearch = async () => {
-		let handledText = searchText.toLowerCase();
-		console.log(handledText);
-		onSearch(handledText);
-	};
-
-	const clearSearch = async () => {
-		setSearchText("");
-		onSearch("");
-	};
-
+export const NavigationBar = ({ user, onLoggedOut, clearSearch }) => {
 	return (
 		<Navbar bg='light'>
 			<Container>
@@ -62,7 +49,7 @@ export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
 									Profile
 								</Nav.Link>
 								<Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
-								<Form className='d-flex align-items-end'>
+								{/* <Form className='d-flex align-items-end'>
 									<Form.Control
 										onChange={(e) => setSearchText(e.target.value)}
 										value={searchText}
@@ -87,7 +74,7 @@ export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
 									>
 										Reset
 									</Button>
-								</Form>
+								</Form> */}
 							</>
 						)}
 					</Nav>
