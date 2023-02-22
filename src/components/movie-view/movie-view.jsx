@@ -4,7 +4,7 @@ import { Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const MovieView = ({ movies }) => {
+export const MovieView = ({ movies, isFavorite, clearSearch }) => {
 	const { movieId } = useParams();
 	const movie = movies.find((m) => m._id === movieId);
 	const storedToken = localStorage.getItem("token");
@@ -16,6 +16,10 @@ export const MovieView = ({ movies }) => {
 		window.scrollTo(0, 0);
 	};
 	window.onbeforeunload();
+
+	const clicked = async () => {
+		isFavorite(movie);
+	};
 
 	const filterByGenre = (genre, id) => {
 		filterMovies = movies.filter((m) => m.genreName === genre && m._id !== id);
@@ -37,6 +41,13 @@ export const MovieView = ({ movies }) => {
 
 	return (
 		<Col className='mt-3 mb-3'>
+			<Button
+				variant='danger'
+				className='mb-5'
+				onClick={clicked}
+			>
+				Favorite
+			</Button>
 			<div>
 				<img
 					className='w-100'
@@ -98,7 +109,11 @@ export const MovieView = ({ movies }) => {
 						md={4}
 						lg={3}
 					>
-						<MovieCard movie={movie} />
+						<MovieCard
+							movie={movie}
+							isFavorite={isFavorite}
+							clearSearch={clearSearch}
+						/>
 					</Col>
 				))}
 			</>

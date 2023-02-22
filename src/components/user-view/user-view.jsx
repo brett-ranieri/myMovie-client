@@ -4,7 +4,7 @@ import { Col, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FavoriteMovie } from "../movie-fav/movie-fav";
 
-export const UserView = ({ favoriteMovies }) => {
+export const UserView = ({ favoriteMovies, isFavorite, clearSearch }) => {
 	const storedUsername = localStorage.getItem("username");
 	const storedToken = localStorage.getItem("token");
 	const storedUser = localStorage.getItem("user");
@@ -77,7 +77,11 @@ export const UserView = ({ favoriteMovies }) => {
 				</Button>
 			</Link>
 			<Container>
-				<FavoriteMovie favoriteMovies={favoriteMovies} />
+				<FavoriteMovie
+					favoriteMovies={favoriteMovies}
+					isFavorite={isFavorite}
+					clearSearch={clearSearch}
+				/>
 			</Container>
 		</Col> //button calls onBackClick function from main-view when clicked
 	);

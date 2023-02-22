@@ -4,7 +4,7 @@ import { Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const FavoriteMovie = ({ favoriteMovies }) => {
+export const FavoriteMovie = ({ favoriteMovies, isFavorite, clearSearch }) => {
 	return (
 		<Col>
 			<>
@@ -16,7 +16,11 @@ export const FavoriteMovie = ({ favoriteMovies }) => {
 						md={4}
 						lg={3}
 					>
-						<MovieCard movie={movie} />
+						<MovieCard
+							movie={movie}
+							isFavorite={isFavorite}
+							clearSearch={clearSearch}
+						/>
 					</Col>
 				))}
 			</>
