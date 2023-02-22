@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const MovieView = ({ movies, user }) => {
+export const MovieView = ({ movies }) => {
 	const { movieId } = useParams();
 	const movie = movies.find((m) => m._id === movieId);
 	const storedToken = localStorage.getItem("token");
 	const [token] = useState(storedToken ? storedToken : null);
+
+	const [simMoviesExist, setSimMoviesExist] = useState(false);
 
 	window.onbeforeunload = function () {
 		window.scrollTo(0, 0);
@@ -21,7 +23,17 @@ export const MovieView = ({ movies, user }) => {
 	};
 
 	let filteredMovies = filterByGenre(movie.genreName, movie._id);
-	console.log("filtered: ", filteredMovies);
+	console.log(filteredMovies);
+
+	const checkSimMovies = (list) => {
+		useEffect(() => {
+			if (Object.keys(list).length === 0) {
+				setSimMoviesExist(true);
+			}
+		}, [list]);
+	};
+	checkSimMovies(filteredMovies);
+	console.log(simMoviesExist);
 
 	return (
 		<Col className='mt-3 mb-3'>
@@ -75,6 +87,9 @@ export const MovieView = ({ movies, user }) => {
 			<br />
 			<>
 				<h3>Similar Movies:</h3>
+				{simMoviesExist ? (
+					<p>There are no movies that match this Genre in the database.</p>
+				) : null}
 				{filteredMovies.map((movie) => (
 					<Col
 						className='mb-3 mt-3'
