@@ -1,9 +1,35 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { Col, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FavoriteMovie } from "../movie-fav/movie-fav";
 
-export const UserView = ({ user, favoriteMovies }) => {
+export const UserView = ({ favoriteMovies }) => {
+	const storedUsername = localStorage.getItem("username");
+	const storedToken = localStorage.getItem("token");
+	const storedUser = localStorage.getItem("user");
+	const [user, setUser] = useState(storedUser ? storedUser : null);
+
+	useEffect(() => {
+		if (!storedToken) {
+			return;
+		}
+
+		const getUser = (storedUsername) => {
+			fetch(
+				`https://movie-api-git-main-brett-ranieri.vercel.app/users/${storedUsername}`,
+				{
+					headers: { Authorization: `Bearer ${storedToken}` },
+				}
+			)
+				.then((response) => response.json()) //return data as json object
+				.then((data) => {
+					setUser({ ...data }); //populate movies
+				});
+		};
+		getUser(storedUsername);
+	}, [storedToken, storedUsername]);
+
 	return (
 		<Col className='mt-3'>
 			<div>

@@ -79,24 +79,6 @@ export const MainView = () => {
 	// 	// console.log("Stored Username: ", storedUsername);
 	// 	// console.log(storedToken);
 	// });
-
-	/////////////////////// Start of Movie Filtering ///////////////////////////////////
-	// useEffect(() => {
-	// 	setFilteredMovies(movies);
-	// }, [movies]);
-
-	// const searchResult = async (text) => {
-	// 	let searchFilter = movies.filter((m) =>
-	// 		m.title.toLowerCase().includes(text)
-	// 	);
-	// 	setFilteredMovies(searchFilter);
-	// };
-
-	// const clearSearch = async () => {
-	// 	console.log("second step");
-	// 	searchResult("");
-	// };
-	////////////////////////// End of Movie Filtering ///////////////////////////////////////
 	///////////////////////// Start of Movie Favorites ///////////////////////////////////////
 
 	useEffect(() => {
@@ -383,17 +365,14 @@ export const MainView = () => {
 									/>
 								) : (
 									<Col md={8}>
-										<UserView
-											favoriteMovies={favoriteMovies}
-											user={user}
-										/>
+										<UserView favoriteMovies={favoriteMovies} />
 									</Col>
 								)}
 							</>
 						}
 					/>
 					<Route
-						path='/users/profile/update'
+						path='/users/profile/update/'
 						element={
 							<>
 								{!user ? (
