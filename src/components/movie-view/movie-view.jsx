@@ -41,13 +41,6 @@ export const MovieView = ({ movies, isFavorite, clearSearch }) => {
 
 	return (
 		<Col className='mt-3 mb-3'>
-			<Button
-				variant='danger'
-				className='mb-5'
-				onClick={clicked}
-			>
-				Favorite
-			</Button>
 			<div>
 				<img
 					className='w-100'

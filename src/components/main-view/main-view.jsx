@@ -73,12 +73,6 @@ export const MainView = () => {
 		getUser(username);
 	}, [token, username]);
 
-	// useEffect(() => {
-	// 	console.log("Main User: ", user);
-	// 	console.log("Favorite Movies: ", favoriteMovies);
-	// 	// console.log("Stored Username: ", storedUsername);
-	// 	// console.log(storedToken);
-	// });
 	///////////////////////// Start of Movie Favorites ///////////////////////////////////////
 
 	useEffect(() => {
@@ -347,6 +341,7 @@ export const MainView = () => {
 													movie={movie}
 													clearSearch={clearSearch}
 													isFavorite={isFavorite}
+													favoriteMovies={favoriteMovies}
 												/>
 											</Col>
 										))}

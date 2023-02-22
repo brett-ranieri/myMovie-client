@@ -2,3 +2,11 @@ $primary: DarkCyan;
 $body-bg: Gray;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+.buttonOne {
+	background-color: yellow;
+}
+
+.buttonTwo {
+	background-color: purple;
+}

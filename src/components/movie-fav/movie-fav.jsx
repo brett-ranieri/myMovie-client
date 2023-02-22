@@ -20,6 +20,7 @@ export const FavoriteMovie = ({ favoriteMovies, isFavorite, clearSearch }) => {
 							movie={movie}
 							isFavorite={isFavorite}
 							clearSearch={clearSearch}
+							favoriteMovies={favoriteMovies}
 						/>
 					</Col>
 				))}
