@@ -21,6 +21,7 @@ export const FavoriteMovie = ({ favoriteMovies, isFavorite, clearSearch }) => {
 							isFavorite={isFavorite}
 							clearSearch={clearSearch}
 							favoriteMovies={favoriteMovies}
+							favButton={favoriteMovies.includes(movie)}
 						/>
 					</Col>
 				))}

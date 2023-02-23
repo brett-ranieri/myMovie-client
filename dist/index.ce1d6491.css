@@ -12006,11 +12006,21 @@ textarea.form-control-lg {
 }
 
 .buttonOne {
-  background-color: #ff0;
+  color: pink;
+  background-color: #fff;
+  border: none;
+}
+
+.buttonOne:hover, .buttonTwo:hover {
+  color: #fff;
+  background-color: pink;
+  border: none;
 }
 
 .buttonTwo {
-  background-color: purple;
+  color: red;
+  background-color: #8b0000;
+  border: none;
 }
 
 /*# sourceMappingURL=index.ce1d6491.css.map */

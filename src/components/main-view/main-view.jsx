@@ -172,6 +172,20 @@ export const MainView = () => {
 	// 	return <input onKeyDown={handleKeyDown} />;
 	// };
 
+	/////////////////////// START Button Fav State //////////////////////////
+	// let buttonFavStatus;
+	// const getButtonFav = (movie, data) => {
+	// 	console.log(movie);
+	// 	console.log(data);
+	// 	let buttonFavStatus = data;
+	// 	return buttonFavStatus;
+	// };
+	// getButtonFav();
+
+	// const [isButtonFav, SetIsButtonFav] = useState();
+
+	// console.log(isButtonFav);
+
 	return (
 		<BrowserRouter>
 			<NavigationBar
@@ -235,6 +249,9 @@ export const MainView = () => {
 											movies={movies}
 											isFavorite={isFavorite}
 											clearSearch={clearSearch}
+											favoriteMovies={favoriteMovies}
+											// getButtonFav={getButtonFav}
+											// buttonFavStatus={buttonFavStatus}
 										/>
 									</Col>
 								)}
@@ -342,6 +359,9 @@ export const MainView = () => {
 													clearSearch={clearSearch}
 													isFavorite={isFavorite}
 													favoriteMovies={favoriteMovies}
+													// sendToParent={SetIsButtonFav}
+													favButton={favoriteMovies.includes(movie)}
+													// getButtonFav={getButtonFav}
 												/>
 											</Col>
 										))}

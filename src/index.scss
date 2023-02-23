@@ -4,9 +4,19 @@ $body-bg: Gray;
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 .buttonOne {
-	background-color: yellow;
+	background-color: white;
+	color: pink;
+	border: none;
+}
+.buttonOne:hover,
+.buttonTwo:hover {
+	background-color: pink;
+	color: white;
+	border: none;
 }
 
 .buttonTwo {
-	background-color: purple;
+	background-color: darkred;
+	color: red;
+	border: none;
 }
