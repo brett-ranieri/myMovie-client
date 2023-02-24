@@ -46862,6 +46862,7 @@ const MovieView = ({ movies , isFavorite , clearSearch , favoriteMovies  })=>{
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                        className: "lightText",
                         children: "Similar Movies:"
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
@@ -47755,6 +47756,7 @@ const FavoriteMovie = ({ favoriteMovies , isFavorite , clearSearch  })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                className: "lightText",
                 children: "Favorite Movies:"
             }, void 0, false, {
                 fileName: "src/components/movie-fav/movie-fav.jsx",

@@ -202,7 +202,7 @@ export const MovieView = ({
 			</div>
 			<>
 				<br />
-				<h3>Similar Movies:</h3>
+				<h3 className='lightText'>Similar Movies:</h3>
 				{simMoviesExist ? (
 					<p>There are no movies that match this Genre in the database.</p>
 				) : null}

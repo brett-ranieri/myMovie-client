@@ -7,7 +7,7 @@ import { MovieCard } from "../movie-card/movie-card";
 export const FavoriteMovie = ({ favoriteMovies, isFavorite, clearSearch }) => {
 	return (
 		<>
-			<h3>Favorite Movies:</h3>
+			<h3 className='lightText'>Favorite Movies:</h3>
 			<Row
 				style={{ display: "flex", flexDirection: "row" }}
 				className='col-md-offset-2'
