@@ -12005,22 +12005,109 @@ textarea.form-control-lg {
   }
 }
 
+a {
+  color: #fad25a;
+}
+
+a:hover {
+  color: #daa520;
+}
+
+.navbar-brand, .nav-link {
+  color: #8c8c8c !important;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+  color: #fff !important;
+}
+
+.signupCard {
+  margin-top: 50px !important;
+  position: absolute !important;
+}
+
+.textContainer {
+  opacity: .93;
+  background-color: #d4af37;
+  padding: 30px;
+}
+
+.container {
+  position: relative;
+}
+
+.cardBody {
+  color: #8c8c8c;
+  background-color: #292929;
+}
+
 .buttonOne {
-  color: pink;
-  background-color: #fff;
-  border: none;
+  opacity: 1;
+  color: #d4af37;
+  background-color: #0000;
+  padding: 0;
+  position: absolute;
+  top: 2%;
+  right: 5%;
+  border: none !important;
 }
 
 .buttonOne:hover, .buttonTwo:hover {
-  color: #fff;
-  background-color: pink;
-  border: none;
+  opacity: 1;
+  color: #000;
+  background-color: #0000;
+  border: none !important;
 }
 
 .buttonTwo {
+  color: #daa520;
+  background-color: #0000;
+  padding: 0;
+  position: absolute;
+  top: 2%;
+  right: 5%;
+  border: none !important;
+}
+
+.goldButton {
+  color: #000;
+  background-color: #daa520;
+  border-color: #000;
+}
+
+.goldButton:hover {
+  color: #daa520;
+  background-color: #000;
+  border-color: #daa520;
+}
+
+.silverButton {
+  color: #000;
+  background-color: #cac8c4;
+  border-color: #000;
+}
+
+.silverButton:hover {
+  color: #cac8c4;
+  background-color: #000;
+  border-color: #cac8c4;
+}
+
+.form-control:focus {
+  border-color: #daa520;
+  box-shadow: 0 0 8px #daa520;
+}
+
+.accountContainer {
+  padding-left: 50px;
+}
+
+.accountInfo {
+  padding-left: 20px;
+}
+
+.warningText {
   color: red;
-  background-color: #8b0000;
-  border: none;
 }
 
 /*# sourceMappingURL=index.ce1d6491.css.map */

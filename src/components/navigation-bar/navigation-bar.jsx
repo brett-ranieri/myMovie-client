@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export const NavigationBar = ({ user, onLoggedOut, clearSearch }) => {
 	return (
-		<Navbar bg='light'>
+		<Navbar bg='dark'>
 			<Container>
 				<Navbar.Brand
 					as={Link}

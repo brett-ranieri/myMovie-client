@@ -32,57 +32,37 @@ export const UserView = ({ favoriteMovies, isFavorite, clearSearch }) => {
 
 	return (
 		<Col className='mt-3'>
-			<div>
-				<Link to={"/users/profile/update"}>
-					<Button
-						variant='primary'
-						className='m-2 mb-3'
-					>
-						Update Information
-					</Button>
-				</Link>
-				<Link to={"/users/remove"}>
-					<Button
-						variant='danger'
-						className='m-2 mb-3'
-					>
-						Delete Account
-					</Button>
-				</Link>
-				<h5>Name: </h5>
-				<span>{user.Name}</span>
-			</div>
-			<br />
-			<div>
-				<h5>Username: </h5>
-				<span>{user.Username}</span>
-			</div>
-			<br />
-			<div>
-				<h5>Email: </h5>
-				<span>{user.Email}</span>
-			</div>
-			<br />
-			<div>
-				<h5>Birthday: </h5>
-				<span>{user.Birthday}</span>
-			</div>
-			<br />
-			<Link to={"/"}>
-				<Button
-					variant='primary'
-					className='mb-5'
-				>
-					Back
-				</Button>
+			<Link to={"/users/profile/update"}>
+				<Button className='m-2 mb-3 goldButton'>Update Information</Button>
 			</Link>
+			<Link to={"/users/remove"}>
+				<Button className='m-2 mb-3 silverButton'>Delete Account</Button>
+			</Link>
+			<div class='accountContainer textContainer rounded-4 shadow-lg'>
+				<h3>Account Information:</h3>
+
+				<h5>Name: </h5>
+				<p class='accountInfo'>{user.Name}</p>
+				<h5>Username: </h5>
+				<p class='accountInfo'>{user.Username}</p>
+				<h5>Email: </h5>
+				<p class='accountInfo'>{user.Email}</p>
+				<h5>Birthday: </h5>
+				<p class='accountInfo'>
+					{new Date(user.Birthday).toLocaleDateString("en-US")}
+				</p>
+			</div>
 			<Container>
+				<br />
 				<FavoriteMovie
 					favoriteMovies={favoriteMovies}
 					isFavorite={isFavorite}
 					clearSearch={clearSearch}
 				/>
 			</Container>
+			<Link to={"/"}>
+				<Button className='mb-5 goldButton'>Back</Button>
+			</Link>
 		</Col> //button calls onBackClick function from main-view when clicked
 	);
 };

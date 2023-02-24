@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Col, Row, Card, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export const LoginView = ({ onLoggedIn }) => {
 	const [username, setUsername] = useState("");
@@ -41,37 +42,56 @@ export const LoginView = ({ onLoggedIn }) => {
 	};
 
 	return (
-		<Form
-			onSubmit={handleSubmit}
-			className='mb-3 mt-3'
-		>
-			<Form.Group controlId='formUsername'>
-				<Form.Label>Username:</Form.Label>
-				<Form.Control
-					type='text'
-					value={username}
-					onChange={(e) => setUsername(e.target.value)}
-					required
-					minLength='5'
-				/>
-			</Form.Group>
-			<Form.Group controlId='formPassword'>
-				<Form.Label>Password:</Form.Label>
-				<Form.Control
-					type='password'
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					required
-					minLength='5'
-				/>
-			</Form.Group>
-			<Button
-				variant='primary'
-				className='mt-3 mb-3'
-				type='submit'
-			>
-				Submit
-			</Button>
-		</Form>
+		<Row className='d-flex justify-content-center align-content-center vh-100'>
+			<Col>
+				<Card
+					className='p-4 rounded-4 shadow-lg m-auto'
+					style={{ width: "30rem" }}
+				>
+					<h1 className='text-center'>myMovie Database</h1>
+					<Card.Body>
+						<Form onSubmit={handleSubmit}>
+							<Form.Group controlId='formUsername'>
+								<Form.Label>Username:</Form.Label>
+								<Form.Control
+									type='text'
+									value={username}
+									onChange={(e) => setUsername(e.target.value)}
+									required
+									minLength='5'
+								/>
+							</Form.Group>
+							<Form.Group controlId='formPassword'>
+								<Form.Label>Password:</Form.Label>
+								<Form.Control
+									type='password'
+									value={password}
+									onChange={(e) => setPassword(e.target.value)}
+									required
+									minLength='5'
+								/>
+							</Form.Group>
+							<Button
+								className='mt-3 mb-3 goldButton'
+								type='submit'
+							>
+								Submit
+							</Button>
+						</Form>
+						<div>
+							<p className='text-muted text-center'>
+								Need an account?
+								<Link
+									to={"/signup"}
+									className='mx-2'
+								>
+									Signup
+								</Link>
+							</p>
+						</div>
+					</Card.Body>
+				</Card>
+			</Col>
+		</Row>
 	);
 };

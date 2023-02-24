@@ -11,8 +11,9 @@ export const MovieCard = ({
 	// getButtonFav,
 	// sendToParent,
 	favButton,
+	favCheck,
 }) => {
-	const [buttonFav, setButtonFav] = useState("buttonOne");
+	const [buttonStyle, setButtonStyle] = useState("buttonOne");
 
 	const clearMovies = async () => {
 		clearSearch();
@@ -21,11 +22,11 @@ export const MovieCard = ({
 	const clicked = async () => {
 		isFavorite(movie);
 		if (favButton === true) {
-			//toggles state based on current state
-			setButtonFav("buttonTwo");
+			//on button click toggles state based on current state
+			setButtonStyle("buttonTwo");
 			// getButtonFav("buttonTwo");
 		} else {
-			setButtonFav("buttonOne");
+			setButtonStyle("buttonOne");
 			// getButtonFav("buttonOne");
 		}
 	};
@@ -33,12 +34,12 @@ export const MovieCard = ({
 	// console.log("Fav movies from card: ", favoriteMovies);
 
 	useEffect(() => {
-		//checks if favMovie, then sets class accordingly
+		//initially checks if favMovie, then sets class accordingly
 		if (favButton === true) {
-			setButtonFav("buttonTwo");
+			setButtonStyle("buttonTwo");
 			// getButtonFav(movie, "buttonTwo");
 		} else {
-			setButtonFav("buttonOne");
+			setButtonStyle("buttonOne");
 			// getButtonFav(movie, "buttonOne");
 		}
 		// console.log("UseEffect:", favoriteMovies);
@@ -49,55 +50,58 @@ export const MovieCard = ({
 	// }, [getButtonFav]);
 
 	return (
-		<Card className='h-100'>
-			<Card.Img
-				variant='top'
-				src={movie.imagePath}
-			/>
-			<Card.Body>
-				<Card.Title>{movie.title}</Card.Title>
-				<Card.Text>{movie.genreName}</Card.Text>
+		<Card
+			// style={{ width: "24rem" }}
+			className='h-100'
+		>
+			<div class='imgContainer'>
+				<Card.Img
+					// style={{ height: "auto", width: "20rem" }}
+					variant='top'
+					src={movie.imagePath}
+				/>
 				<Button
-					className={buttonFav}
+					className={buttonStyle}
 					onClick={clicked}
 				>
 					{favButton ? (
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
-							width='16'
-							height='16'
+							width='24'
+							height='24'
 							fill='currentColor'
-							class='bi bi-balloon-heart-fill'
+							class='bi bi-star-fill'
 							viewBox='0 0 16 16'
 						>
-							<path
-								fill-rule='evenodd'
-								d='M8.49 10.92C19.412 3.382 11.28-2.387 8 .986 4.719-2.387-3.413 3.382 7.51 10.92l-.234.468a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2.376 2.376 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.235-.468ZM6.726 1.269c-1.167-.61-2.8-.142-3.454 1.135-.237.463-.36 1.08-.202 1.85.055.27.467.197.527-.071.285-1.256 1.177-2.462 2.989-2.528.234-.008.348-.278.14-.386Z'
-							/>
+							<path d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z' />
 						</svg>
 					) : (
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
-							width='16'
-							height='16'
+							width='24'
+							height='24'
 							fill='currentColor'
-							class='bi bi-balloon-heart'
+							class='bi bi-star'
 							viewBox='0 0 16 16'
 						>
-							<path
-								fill-rule='evenodd'
-								d='m8 2.42-.717-.737c-1.13-1.161-3.243-.777-4.01.72-.35.685-.451 1.707.236 3.062C4.16 6.753 5.52 8.32 8 10.042c2.479-1.723 3.839-3.29 4.491-4.577.687-1.355.587-2.377.236-3.061-.767-1.498-2.88-1.882-4.01-.721L8 2.42Zm-.49 8.5c-10.78-7.44-3-13.155.359-10.063.045.041.089.084.132.129.043-.045.087-.088.132-.129 3.36-3.092 11.137 2.624.357 10.063l.235.468a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.235-.468ZM6.013 2.06c-.649-.18-1.483.083-1.85.798-.131.258-.245.689-.08 1.335.063.244.414.198.487-.043.21-.697.627-1.447 1.359-1.692.217-.073.304-.337.084-.398Z'
-							/>
+							<path d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z' />
 						</svg>
 					)}
 				</Button>
-				<Link to={`/movies/${encodeURIComponent(movie._id)}`}>
-					<Button
+			</div>
+			<Card.Body className='cardBody'>
+				<Card.Title>{movie.title}</Card.Title>
+				<Card.Text>{movie.genreName}</Card.Text>
+				<Link
+					to={`/movies/${encodeURIComponent(movie._id)}`}
+					onClick={favCheck}
+				>
+					{/* <Button
 						variant='primary'
 						onClick={clearMovies}
-					>
-						Details
-					</Button>
+					> */}
+					Details
+					{/* </Button> */}
 				</Link>
 			</Card.Body>
 		</Card>

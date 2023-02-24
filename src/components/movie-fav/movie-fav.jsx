@@ -1,13 +1,17 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Col, Button } from "react-bootstrap";
+import { Col, Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
 
 export const FavoriteMovie = ({ favoriteMovies, isFavorite, clearSearch }) => {
 	return (
-		<Col>
-			<>
+		<>
+			<h3>Favorite Movies:</h3>
+			<Row
+				style={{ display: "flex", flexDirection: "row" }}
+				className='col-md-offset-2'
+			>
 				{favoriteMovies.map((movie) => (
 					<Col
 						className='mb-3 mt-3'
@@ -25,7 +29,7 @@ export const FavoriteMovie = ({ favoriteMovies, isFavorite, clearSearch }) => {
 						/>
 					</Col>
 				))}
-			</>
-		</Col>
+			</Row>
+		</>
 	);
 };

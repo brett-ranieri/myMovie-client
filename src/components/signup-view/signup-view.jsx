@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Row, Col, Card, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export const SignupView = () => {
 	const [username, setUsername] = useState("");
@@ -45,64 +46,86 @@ export const SignupView = () => {
 	};
 
 	return (
-		<Form
-			onSubmit={handleSubmit}
-			className='mb-3 mt-3'
-		>
-			<Form.Group>
-				<Form.Label>Username:</Form.Label>
-				<Form.Control
-					type='text'
-					value={username}
-					onChange={(e) => setUsername(e.target.value)}
-					required
-					minLength='5'
-				/>
-			</Form.Group>
-			<Form.Group>
-				<Form.Label>Password:</Form.Label>
-				<Form.Control
-					type='password'
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					required
-					minLength='5'
-				/>
-			</Form.Group>
-			<Form.Group>
-				<Form.Label>Name:</Form.Label>
-				<Form.Control
-					type='text'
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-					required
-					minLength='3'
-				/>
-			</Form.Group>
-			<Form.Group>
-				<Form.Label>Email:</Form.Label>
-				<Form.Control
-					type='email'
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-					required
-				/>
-			</Form.Group>
-			<Form.Group>
-				<Form.Label>Birthday:</Form.Label>
-				<Form.Control
-					type='date'
-					value={birthday}
-					onChange={(e) => setBirthday(e.target.value)}
-				/>
-			</Form.Group>
-			<Button
-				variant='primary'
-				className='mt-3 mb-3'
-				type='submit'
+		<Row className='d-flex justify-content-center align-content-end vh-100'>
+			{/* <Col className='mb-5 mt-5'> */}
+			<Card
+				className='p-4 rounded-4 shadow-lg signupCard'
+				style={{ width: "26rem" }}
 			>
-				Submit
-			</Button>
-		</Form>
+				<h1 className='text-center'>myMovie Database</h1>
+				<Card.Body>
+					<Form
+						onSubmit={handleSubmit}
+						className='mb-3 mt-3'
+					>
+						<Form.Group>
+							<Form.Label>Username:</Form.Label>
+							<Form.Control
+								type='text'
+								value={username}
+								onChange={(e) => setUsername(e.target.value)}
+								required
+								minLength='5'
+							/>
+						</Form.Group>
+						<Form.Group>
+							<Form.Label>Password:</Form.Label>
+							<Form.Control
+								type='password'
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+								required
+								minLength='5'
+							/>
+						</Form.Group>
+						<Form.Group>
+							<Form.Label>Name:</Form.Label>
+							<Form.Control
+								type='text'
+								value={name}
+								onChange={(e) => setName(e.target.value)}
+								required
+								minLength='3'
+							/>
+						</Form.Group>
+						<Form.Group>
+							<Form.Label>Email:</Form.Label>
+							<Form.Control
+								type='email'
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+								required
+							/>
+						</Form.Group>
+						<Form.Group>
+							<Form.Label>Birthday:</Form.Label>
+							<Form.Control
+								type='date'
+								value={birthday}
+								onChange={(e) => setBirthday(e.target.value)}
+							/>
+						</Form.Group>
+						<Button
+							className='mt-3 mb-3 goldButton'
+							type='submit'
+						>
+							Sign me up!
+						</Button>
+					</Form>
+					<div>
+						<p className='text-muted text-center'>
+							Already have an account?
+							<Link
+								to={"/login"}
+								className='mx-2'
+							>
+								Login
+							</Link>
+						</p>
+					</div>
+				</Card.Body>
+			</Card>
+			{/* </Col> */}
+		</Row>
 	);
 };

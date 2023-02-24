@@ -206,7 +206,7 @@ export const MainView = () => {
 								{user ? (
 									<Navigate to='/' />
 								) : (
-									<Col md={5}>
+									<Col sm={9}>
 										<SignupView />
 									</Col>
 								)}
@@ -220,7 +220,7 @@ export const MainView = () => {
 								{user ? (
 									<Navigate to='/' />
 								) : (
-									<Col md={5}>
+									<Col sm={9}>
 										<LoginView
 											onLoggedIn={(username, token) => {
 												setUsername(username);
@@ -271,12 +271,12 @@ export const MainView = () => {
 									<div>The list is empty!</div>
 								) : filteredMovies.length === 0 ? (
 									<>
-										<Row>
+										<Row className='justify-content-center'>
 											<Col
-												md={8}
+												md={6}
 												className='mt-4'
 											>
-												<Form className='d-flex align-items-end'>
+												<Form className='d-flex'>
 													<Form.Control
 														onChange={(e) => setSearchText(e.target.value)}
 														value={searchText}
@@ -287,19 +287,17 @@ export const MainView = () => {
 														onKeyDown={handleKeyDown}
 													/>
 													<Button
-														variant='primary'
 														onClick={handleSearch}
 														as={Link}
 														to='/'
-														className='me-2'
+														className='me-2 align-items-end goldButton'
 														type='submit'
 													>
 														Search
 													</Button>
 													<Button
-														variant='danger'
 														onClick={clearSearch}
-														className='me-2'
+														className='me-2 align-items-end silverButton'
 													>
 														Clear
 													</Button>
@@ -310,12 +308,12 @@ export const MainView = () => {
 									</>
 								) : (
 									<>
-										<Row>
+										<Row className='justify-content-center'>
 											<Col
 												md={8}
 												className='mt-4'
 											>
-												<Form className='d-flex align-items-end'>
+												<Form className='d-flex'>
 													<Form.Control
 														onChange={(e) => setSearchText(e.target.value)}
 														value={searchText}
@@ -330,15 +328,14 @@ export const MainView = () => {
 														onClick={handleSearch}
 														as={Link}
 														to='/'
-														className='me-2'
+														className='me-2 align-items-end goldButton'
 														type='submit'
 													>
 														Search
 													</Button>
 													<Button
-														variant='danger'
 														onClick={clearSearch}
-														className='me-2'
+														className='me-2 align-items-end silverButton'
 													>
 														Clear
 													</Button>

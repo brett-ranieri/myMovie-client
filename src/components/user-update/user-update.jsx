@@ -95,7 +95,7 @@ export const UpdateView = ({ user }) => {
 
 	return (
 		<>
-			<Col className='mb-3 mt-3'>
+			<Col className='mb-3 mt-3 textContainer rounded-4 shadow-lg'>
 				{fetchStatus ? (
 					<p>
 						Updates successfully submitted! Head back to your profile page to
@@ -110,7 +110,9 @@ export const UpdateView = ({ user }) => {
 					It's just that easy.
 				</p>
 				{noData ? (
-					<p>At least one field must be filled in before submitting!</p>
+					<p className='warningText'>
+						<b>At least one field must be filled in before submitting!</b>
+					</p>
 				) : null}
 				<Form onSubmit={handleUpdate}>
 					<Form.Group>
@@ -161,8 +163,7 @@ export const UpdateView = ({ user }) => {
 						/>
 					</Form.Group>
 					<Button
-						variant='primary'
-						className='mt-3 mb-3'
+						className='mt-3 mb-3 goldButton'
 						type='submit'
 					>
 						Submit
