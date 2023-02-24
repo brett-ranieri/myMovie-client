@@ -1,3 +1,4 @@
+@import "https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&display=swap";
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -12005,6 +12006,10 @@ textarea.form-control-lg {
   }
 }
 
+:root {
+  --bs-body-font-family: "Josefin Sans", sans-serif;
+}
+
 a {
   color: #fad25a;
 }
@@ -12081,6 +12086,11 @@ a:hover {
   border-color: #daa520;
 }
 
+.goldButton:focus {
+  background-color: #ae841a !important;
+  border-color: #000 !important;
+}
+
 .silverButton {
   color: #000;
   background-color: #cac8c4;
@@ -12091,6 +12101,11 @@ a:hover {
   color: #cac8c4;
   background-color: #000;
   border-color: #cac8c4;
+}
+
+.silverButton:focus {
+  background-color: #a4a19a !important;
+  border-color: #000 !important;
 }
 
 .form-control:focus {

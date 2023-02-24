@@ -2,6 +2,11 @@ $primary: DarkCyan;
 $body-bg: Gray;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&display=swap");
+
+:root {
+	--bs-body-font-family: "Josefin Sans", sans-serif;
+}
 
 a {
 	color: #fad25a;
@@ -81,6 +86,11 @@ a:hover {
 	border-color: #daa520;
 }
 
+.goldButton:focus {
+	background-color: #ae841a !important;
+	border-color: black !important;
+}
+
 .silverButton {
 	background-color: #cac8c4;
 	color: black;
@@ -91,6 +101,11 @@ a:hover {
 	background-color: black;
 	color: #cac8c4;
 	border-color: #cac8c4;
+}
+
+.silverButton:focus {
+	background-color: #a4a19a !important;
+	border-color: black !important;
 }
 
 .form-control:focus {
