@@ -273,10 +273,13 @@ export const MainView = () => {
 									<>
 										<Row className='justify-content-center'>
 											<Col
+												xs='auto'
+												sm={6}
 												md={6}
+												lg={6}
 												className='mt-4'
 											>
-												<Form className='d-flex'>
+												<Form>
 													<Form.Control
 														onChange={(e) => setSearchText(e.target.value)}
 														value={searchText}
@@ -290,30 +293,35 @@ export const MainView = () => {
 														onClick={handleSearch}
 														as={Link}
 														to='/'
-														className='me-2 align-items-end goldButton'
+														className='mt-2 me-2 goldButton'
 														type='submit'
 													>
 														Search
 													</Button>
 													<Button
 														onClick={clearSearch}
-														className='me-2 align-items-end silverButton'
+														className='mt-2 me-2 silverButton'
 													>
 														Clear
 													</Button>
 												</Form>
 											</Col>
 										</Row>
-										<h5>Nothing matched your search. Please try again</h5>
+										<h5 className='mt-4'>
+											Nothing matched your search. Please try again
+										</h5>
 									</>
 								) : (
 									<>
 										<Row className='justify-content-center'>
 											<Col
-												md={8}
+												xs='auto'
+												sm={6}
+												md={6}
+												lg={6}
 												className='mt-4'
 											>
-												<Form className='d-flex'>
+												<Form>
 													<Form.Control
 														onChange={(e) => setSearchText(e.target.value)}
 														value={searchText}
@@ -328,14 +336,14 @@ export const MainView = () => {
 														onClick={handleSearch}
 														as={Link}
 														to='/'
-														className='me-2 align-items-end goldButton'
+														className='mt-2 me-2 goldButton'
 														type='submit'
 													>
 														Search
 													</Button>
 													<Button
 														onClick={clearSearch}
-														className='me-2 align-items-end silverButton'
+														className='mt-2 me-2 silverButton'
 													>
 														Clear
 													</Button>

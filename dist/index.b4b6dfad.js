@@ -26574,10 +26574,12 @@ const MainView = ()=>{
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
                                             className: "justify-content-center",
                                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                                xs: "auto",
+                                                sm: 6,
                                                 md: 6,
+                                                lg: 6,
                                                 className: "mt-4",
                                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
-                                                    className: "d-flex",
                                                     children: [
                                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
                                                             onChange: (e)=>setSearchText(e.target.value),
@@ -26592,13 +26594,13 @@ const MainView = ()=>{
                                                             onClick: handleSearch,
                                                             as: (0, _reactRouterDom.Link),
                                                             to: "/",
-                                                            className: "me-2 align-items-end goldButton",
+                                                            className: "mt-2 me-2 goldButton",
                                                             type: "submit",
                                                             children: "Search"
                                                         }, void 0, false, void 0, void 0),
                                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                                             onClick: clearSearch,
-                                                            className: "me-2 align-items-end silverButton",
+                                                            className: "mt-2 me-2 silverButton",
                                                             children: "Clear"
                                                         }, void 0, false, void 0, void 0)
                                                     ]
@@ -26606,6 +26608,7 @@ const MainView = ()=>{
                                             }, void 0, false, void 0, void 0)
                                         }, void 0, false, void 0, void 0),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h5", {
+                                            className: "mt-4",
                                             children: "Nothing matched your search. Please try again"
                                         }, void 0, false, void 0, void 0)
                                     ]
@@ -26614,10 +26617,12 @@ const MainView = ()=>{
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
                                             className: "justify-content-center",
                                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                                md: 8,
+                                                xs: "auto",
+                                                sm: 6,
+                                                md: 6,
+                                                lg: 6,
                                                 className: "mt-4",
                                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
-                                                    className: "d-flex",
                                                     children: [
                                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
                                                             onChange: (e)=>setSearchText(e.target.value),
@@ -26633,13 +26638,13 @@ const MainView = ()=>{
                                                             onClick: handleSearch,
                                                             as: (0, _reactRouterDom.Link),
                                                             to: "/",
-                                                            className: "me-2 align-items-end goldButton",
+                                                            className: "mt-2 me-2 goldButton",
                                                             type: "submit",
                                                             children: "Search"
                                                         }, void 0, false, void 0, void 0),
                                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                                             onClick: clearSearch,
-                                                            className: "me-2 align-items-end silverButton",
+                                                            className: "mt-2 me-2 silverButton",
                                                             children: "Clear"
                                                         }, void 0, false, void 0, void 0)
                                                     ]
@@ -26685,7 +26690,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 370,
+                            lineNumber: 378,
                             columnNumber: 6
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -26708,7 +26713,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 391,
+                            lineNumber: 399,
                             columnNumber: 6
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -26731,7 +26736,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 415,
+                            lineNumber: 423,
                             columnNumber: 6
                         }, undefined)
                     ]
@@ -47421,6 +47426,7 @@ var _reactRouterDom = require("react-router-dom");
 const NavigationBar = ({ user , onLoggedOut , clearSearch  })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar), {
         bg: "dark",
+        expand: "md",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Brand, {
@@ -47430,14 +47436,14 @@ const NavigationBar = ({ user , onLoggedOut , clearSearch  })=>{
                     children: "myMovie App"
                 }, void 0, false, {
                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                    lineNumber: 10,
+                    lineNumber: 13,
                     columnNumber: 5
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Toggle, {
                     "aria-controls": "basic-navbar-nav"
                 }, void 0, false, {
                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                    lineNumber: 17,
+                    lineNumber: 20,
                     columnNumber: 5
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Collapse, {
@@ -47453,7 +47459,7 @@ const NavigationBar = ({ user , onLoggedOut , clearSearch  })=>{
                                         children: "Login"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 22,
+                                        lineNumber: 25,
                                         columnNumber: 9
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -47462,7 +47468,7 @@ const NavigationBar = ({ user , onLoggedOut , clearSearch  })=>{
                                         children: "Signup"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 28,
+                                        lineNumber: 31,
                                         columnNumber: 9
                                     }, undefined)
                                 ]
@@ -47476,7 +47482,7 @@ const NavigationBar = ({ user , onLoggedOut , clearSearch  })=>{
                                         children: "Home"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 38,
+                                        lineNumber: 41,
                                         columnNumber: 9
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -47485,7 +47491,7 @@ const NavigationBar = ({ user , onLoggedOut , clearSearch  })=>{
                                         children: "Profile"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 45,
+                                        lineNumber: 48,
                                         columnNumber: 9
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -47493,7 +47499,7 @@ const NavigationBar = ({ user , onLoggedOut , clearSearch  })=>{
                                         children: "Logout"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 51,
+                                        lineNumber: 54,
                                         columnNumber: 9
                                     }, undefined)
                                 ]
@@ -47501,18 +47507,18 @@ const NavigationBar = ({ user , onLoggedOut , clearSearch  })=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                        lineNumber: 19,
+                        lineNumber: 22,
                         columnNumber: 6
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                    lineNumber: 18,
+                    lineNumber: 21,
                     columnNumber: 5
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/navigation-bar/navigation-bar.jsx",
-            lineNumber: 9,
+            lineNumber: 12,
             columnNumber: 4
         }, undefined)
     }, void 0, false, {
