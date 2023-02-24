@@ -19,6 +19,7 @@ Production:
 ## Development Dependencies
 
 - "@parcel/transformer-sass": "^2.8.3"
+- "parcel": "^2.8.3"
 
 ## Project Dependencies
 
@@ -33,9 +34,11 @@ Production:
 ## Tools and Features to Highlight
 
 - Users can sign up to create a new account
+- Users can log in and log out
 - Users can update their account information
 - Users can delete their account
 - Responsive design for all screen sizes
+- App communicates with movie API to exchange data in JSON format. Allowing users to view and even update information stored in database.
 - Search feature on Home page filters all movies and returns only titles that match to search parameters.
 - Favorite button can be clicked in any view and update the list of favorite movies that is displayed in profile view.
 - Similar movies are displayed in movie view based on genre of currently selected movie.
