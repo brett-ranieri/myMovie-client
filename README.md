@@ -48,17 +48,17 @@ Production:
 - Ability to navigate to profile view with navigation bar
 - Ability to log out
 
-<u>Movie View</u>
+**Movie View**
 
 - Returns all data stored about selected movie (including image, title, description, director info, gennre info)
 - Allows user to add a movie to favorites list with dedicated button
 - Displays a list of similar movies (filtered by genre type of selected movie)
 
-::Login View::
+**Login View**
 
 - Allows users to login in with username and password
 
-::Signup View::
+**Signup View**
 
 - Allows new users to register by filling in the following fields:
   - Username
@@ -67,7 +67,7 @@ Production:
   - Email
   - Birthday
 
-::User View::
+**User View**
 
 - Display user account information
 - Allows users to update any field of stored information by navigating to update form
