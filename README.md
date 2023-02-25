@@ -16,6 +16,13 @@ Development:
 
 Production:
 
+- Navigate to following URL in any browser:
+  https://mymovieapp-brettranieri.netlify.app/
+
+- Create your own account on Signup page or use the following credentials:
+  - Username: tester
+  - Password: password
+
 ## Development Dependencies
 
 - "@parcel/transformer-sass": "^2.8.3"
