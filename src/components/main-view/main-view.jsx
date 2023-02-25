@@ -6,7 +6,7 @@ import { SignupView } from "../signup-view/signup-view";
 import { UserView } from "../user-view/user-view";
 import { UpdateView } from "../user-update/user-update";
 import { RemoveUser } from "../user-remove/user-remove";
-import { Row, Col, Button, Form, Container } from "react-bootstrap";
+import { Row, Col, Button, Form } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 
@@ -31,10 +31,9 @@ export const MainView = () => {
 		fetch("https://movie-api-git-main-brett-ranieri.vercel.app/movies", {
 			headers: { Authorization: `Bearer ${token}` },
 		})
-			.then((response) => response.json()) //return data as json object
+			.then((response) => response.json())
 			.then((data) => {
 				const moviesFromApi = data.map((doc) => {
-					//parse data
 					return {
 						_id: doc._id,
 						title: doc.Title,
@@ -49,7 +48,7 @@ export const MainView = () => {
 					};
 				});
 
-				setMovies(moviesFromApi); //populate movies
+				setMovies(moviesFromApi);
 			});
 	}, [token]);
 
@@ -65,15 +64,13 @@ export const MainView = () => {
 					headers: { Authorization: `Bearer ${token}` },
 				}
 			)
-				.then((response) => response.json()) //return data as json object
+				.then((response) => response.json())
 				.then((data) => {
-					setUser({ ...data }); //populate movies
+					setUser({ ...data });
 				});
 		};
 		getUser(username);
 	}, [token, username]);
-
-	///////////////////////// Start of Movie Favorites ///////////////////////////////////////
 
 	useEffect(() => {
 		if (!user) {
@@ -84,19 +81,15 @@ export const MainView = () => {
 			user.FavoriteMovies.includes(movie._id)
 		);
 		setFavoriteMovies(favList);
-	}, [movies, user]); //initially loads favList from API, populates with full object so includes array method will work later (unable to use includes on just _id)
+	}, [movies, user]);
 
 	const isFavorite = async (movie) => {
-		console.log("in func: ", favoriteMovies);
-		console.log(movie);
 		if (favoriteMovies.includes(movie)) {
-			console.log("already a fav");
 			removeFavMovie(movie._id);
 			setFavoriteMovies(favoriteMovies.filter((m) => m._id !== movie._id));
 		} else {
-			console.log("not a fav");
 			addFavMovie(movie._id);
-			setFavoriteMovies([...favoriteMovies, movie]); //...is spread operator, allows a quick copy of an existing array or object
+			setFavoriteMovies([...favoriteMovies, movie]);
 		}
 	};
 
@@ -129,8 +122,6 @@ export const MainView = () => {
 			res.status(500).send("Error: ", error);
 		});
 	};
-	////////////////////////////// End of Movie Favorites //////////////////////////////////////
-	/////////////////////////////// Start Search Feature /////////////////////////////////////
 
 	const [searchText, setSearchText] = useState("");
 
@@ -152,7 +143,6 @@ export const MainView = () => {
 
 	const handleSearch = async () => {
 		let handledText = searchText.toLowerCase();
-		console.log(handledText);
 		searchResult(handledText);
 	};
 
@@ -162,29 +152,6 @@ export const MainView = () => {
 			handleSearch();
 		}
 	};
-
-	// const Input = () => {
-	// 	const handleKeyDown = (event) => {
-	// 		if (event.key === "enter") {
-	// 			console.log("pressed it");
-	// 		}
-	// 	};
-	// 	return <input onKeyDown={handleKeyDown} />;
-	// };
-
-	/////////////////////// START Button Fav State //////////////////////////
-	// let buttonFavStatus;
-	// const getButtonFav = (movie, data) => {
-	// 	console.log(movie);
-	// 	console.log(data);
-	// 	let buttonFavStatus = data;
-	// 	return buttonFavStatus;
-	// };
-	// getButtonFav();
-
-	// const [isButtonFav, SetIsButtonFav] = useState();
-
-	// console.log(isButtonFav);
 
 	return (
 		<BrowserRouter>
@@ -197,7 +164,7 @@ export const MainView = () => {
 				}}
 				clearSearch={clearSearch}
 			/>
-			<Row className='justify-content-md-center'>
+			<Row className='justify-content-center'>
 				<Routes>
 					<Route
 						path='/signup'
@@ -250,8 +217,6 @@ export const MainView = () => {
 											isFavorite={isFavorite}
 											clearSearch={clearSearch}
 											favoriteMovies={favoriteMovies}
-											// getButtonFav={getButtonFav}
-											// buttonFavStatus={buttonFavStatus}
 										/>
 									</Col>
 								)}
@@ -364,9 +329,7 @@ export const MainView = () => {
 													clearSearch={clearSearch}
 													isFavorite={isFavorite}
 													favoriteMovies={favoriteMovies}
-													// sendToParent={SetIsButtonFav}
 													favButton={favoriteMovies.includes(movie)}
-													// getButtonFav={getButtonFav}
 												/>
 											</Col>
 										))}

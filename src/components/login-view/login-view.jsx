@@ -22,16 +22,13 @@ export const LoginView = ({ onLoggedIn }) => {
 			},
 			body: JSON.stringify(data),
 		})
-			.then((response) => response.json()) //transforms response content into JSON object
+			.then((response) => response.json())
 			.then((data) => {
-				console.log("Login response: ", data);
 				if (data.user) {
 					localStorage.setItem("user", data.user);
 					localStorage.setItem("token", data.token);
 					localStorage.setItem("username", data.user.Username);
 					onLoggedIn(data.user.Username, data.token);
-					console.log(data.user);
-					console.log("Username: ", data.user.Username); //passes user and token back to MainView
 				} else {
 					alert("No such user");
 				}
@@ -42,13 +39,13 @@ export const LoginView = ({ onLoggedIn }) => {
 	};
 
 	return (
-		<Row className='d-flex justify-content-center align-content-center vh-100'>
+		<Row className='d-flex justify-content-center justify-content-sm-center align-content-center vh-100'>
 			<Col>
 				<Card
-					className='p-4 rounded-4 shadow-lg m-auto'
-					style={{ width: "30rem" }}
+					className='p-4 rounded-4 shadow-lg loginContainer'
+					style={{ width: "auto" }}
 				>
-					<h1 className='text-center'>myMovie Database</h1>
+					<h1 className='text-center'>myMovie App</h1>
 					<Card.Body>
 						<Form onSubmit={handleSubmit}>
 							<Form.Group controlId='formUsername'>

@@ -21,8 +21,6 @@ export const SignupView = () => {
 			Birthday: birthday,
 		};
 
-		console.log("Signup form: ", data);
-
 		const createUser = await fetch(
 			`https://movie-api-git-main-brett-ranieri.vercel.app/users`,
 			{
@@ -47,12 +45,11 @@ export const SignupView = () => {
 
 	return (
 		<Row className='d-flex justify-content-center align-content-end vh-100'>
-			{/* <Col className='mb-5 mt-5'> */}
 			<Card
-				className='p-4 rounded-4 shadow-lg signupCard'
-				style={{ width: "26rem" }}
+				className='p-4 rounded-4 shadow-lg signupCard loginContainer'
+				style={{ width: "auto" }}
 			>
-				<h1 className='text-center'>myMovie Database</h1>
+				<h1 className='text-center'>myMovie App</h1>
 				<Card.Body>
 					<Form
 						onSubmit={handleSubmit}
@@ -125,7 +122,6 @@ export const SignupView = () => {
 					</div>
 				</Card.Body>
 			</Card>
-			{/* </Col> */}
 		</Row>
 	);
 };
