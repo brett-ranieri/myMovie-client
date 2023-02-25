@@ -1,3 +1,4 @@
+@import "https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&display=swap";
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -161,6 +162,7 @@ p {
 abbr[title] {
   cursor: help;
   text-decoration-skip-ink: none;
+  -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted;
 }
 
@@ -2624,7 +2626,7 @@ textarea.form-control-lg {
   padding-bottom: .625rem;
 }
 
-.form-floating > .form-control:focus ~ label, .form-floating > .form-control:not(:placeholder-shown) ~ label, .form-floating > .form-control-plaintext ~ label, .form-floating > .form-select ~ label, .form-floating > .form-control:-webkit-autofill ~ label {
+.form-floating > .form-control:focus ~ label, .form-floating > .form-control:not(:placeholder-shown) ~ label, .form-floating > .form-control-plaintext ~ label, .form-floating > .form-select ~ label, .form-floating > .form-control:autofill ~ label {
   opacity: .65;
   transform: scale(.85)translateY(-.5rem)translateX(.15rem);
 }
@@ -12003,6 +12005,140 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+
+:root {
+  --bs-body-font-family: "Josefin Sans", sans-serif;
+}
+
+a {
+  color: #fad25a;
+}
+
+a:hover {
+  color: #daa520;
+}
+
+.navbar-brand, .nav-link, .lightToggle {
+  color: #000 !important;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+  color: #d3d3d3 !important;
+}
+
+.navbar {
+  background-color: #8d721e !important;
+}
+
+.signupCard {
+  margin-top: 50px !important;
+  position: absolute !important;
+}
+
+.loginContainer {
+  color: #8c8c8c;
+  background-color: #292929;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.textContainer {
+  opacity: .93;
+  background-color: #d4af37;
+  padding: 30px;
+}
+
+.container {
+  position: relative;
+}
+
+.cardBody {
+  color: #8c8c8c;
+  background-color: #292929;
+}
+
+.buttonOne {
+  opacity: 1;
+  color: #d4af37;
+  background-color: #0000;
+  padding: 0;
+  position: absolute;
+  top: 2%;
+  right: 5%;
+  border: none !important;
+}
+
+.buttonOne:hover, .buttonTwo:hover {
+  opacity: 1;
+  color: #000;
+  background-color: #0000;
+  border: none !important;
+}
+
+.buttonTwo {
+  color: #daa520;
+  background-color: #0000;
+  padding: 0;
+  position: absolute;
+  top: 2%;
+  right: 5%;
+  border: none !important;
+}
+
+.goldButton {
+  color: #000;
+  background-color: #daa520;
+  border-color: #000;
+}
+
+.goldButton:hover {
+  color: #daa520;
+  background-color: #000;
+  border-color: #daa520;
+}
+
+.goldButton:focus {
+  background-color: #ae841a !important;
+  border-color: #000 !important;
+}
+
+.silverButton {
+  color: #000;
+  background-color: #cac8c4;
+  border-color: #000;
+}
+
+.silverButton:hover {
+  color: #cac8c4;
+  background-color: #000;
+  border-color: #cac8c4;
+}
+
+.silverButton:focus {
+  background-color: #a4a19a !important;
+  border-color: #000 !important;
+}
+
+.form-control:focus {
+  border-color: #daa520;
+  box-shadow: 0 0 8px #daa520;
+}
+
+.accountContainer {
+  padding-left: 50px;
+}
+
+.accountInfo {
+  padding-left: 20px;
+}
+
+.warningText {
+  color: red;
+}
+
+.lightText {
+  color: #fff;
 }
 
 /*# sourceMappingURL=index.ce1d6491.css.map */

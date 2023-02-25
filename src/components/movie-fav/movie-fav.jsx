@@ -1,22 +1,15 @@
 import React from "react";
-import { useState } from "react";
-import { Col, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Col, Row } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const FavoriteMovie = ({ thisUser, movies }) => {
-	const storedToken = localStorage.getItem("token");
-	const [token] = useState(storedToken ? storedToken : null);
-
-	let favoriteMovies = movies.filter((m) =>
-		thisUser.favoriteMovies.includes(m._id)
-	);
-
-	console.log("Fav Movies: ", favoriteMovies);
-
+export const FavoriteMovie = ({ favoriteMovies, isFavorite, clearSearch }) => {
 	return (
-		<Col>
-			<>
+		<>
+			<h3 className='lightText'>Favorite Movies:</h3>
+			<Row
+				style={{ display: "flex", flexDirection: "row" }}
+				className='col-md-offset-2'
+			>
 				{favoriteMovies.map((movie) => (
 					<Col
 						className='mb-3 mt-3'
@@ -25,10 +18,16 @@ export const FavoriteMovie = ({ thisUser, movies }) => {
 						md={4}
 						lg={3}
 					>
-						<MovieCard movie={movie} />
+						<MovieCard
+							movie={movie}
+							isFavorite={isFavorite}
+							clearSearch={clearSearch}
+							favoriteMovies={favoriteMovies}
+							favButton={favoriteMovies.includes(movie)}
+						/>
 					</Col>
 				))}
-			</>
-		</Col>
+			</Row>
+		</>
 	);
 };

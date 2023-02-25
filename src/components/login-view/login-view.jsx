@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Col, Row, Card, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export const LoginView = ({ onLoggedIn }) => {
 	const [username, setUsername] = useState("");
@@ -21,14 +22,13 @@ export const LoginView = ({ onLoggedIn }) => {
 			},
 			body: JSON.stringify(data),
 		})
-			.then((response) => response.json()) //transforms response content into JSON object
+			.then((response) => response.json())
 			.then((data) => {
-				console.log("Login response: ", data);
 				if (data.user) {
-					localStorage.setItem("user", JSON.stringify(data.user));
+					localStorage.setItem("user", data.user);
 					localStorage.setItem("token", data.token);
-					onLoggedIn(data.user, data.token);
-					console.log(data.user); //passes user and token back to MainView
+					localStorage.setItem("username", data.user.Username);
+					onLoggedIn(data.user.Username, data.token);
 				} else {
 					alert("No such user");
 				}
@@ -39,34 +39,56 @@ export const LoginView = ({ onLoggedIn }) => {
 	};
 
 	return (
-		<Form onSubmit={handleSubmit}>
-			<Form.Group controlId='formUsername'>
-				<Form.Label>Username:</Form.Label>
-				<Form.Control
-					type='text'
-					value={username}
-					onChange={(e) => setUsername(e.target.value)}
-					required
-					minLength='5'
-				/>
-			</Form.Group>
-			<Form.Group controlId='formPassword'>
-				<Form.Label>Password:</Form.Label>
-				<Form.Control
-					type='password'
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					required
-					minLength='5'
-				/>
-			</Form.Group>
-			<Button
-				variant='primary'
-				className='mt-3 mb-3'
-				type='submit'
-			>
-				Submit
-			</Button>
-		</Form>
+		<Row className='d-flex justify-content-center justify-content-sm-center align-content-center vh-100'>
+			<Col>
+				<Card
+					className='p-4 rounded-4 shadow-lg loginContainer'
+					style={{ width: "auto" }}
+				>
+					<h1 className='text-center'>myMovie App</h1>
+					<Card.Body>
+						<Form onSubmit={handleSubmit}>
+							<Form.Group controlId='formUsername'>
+								<Form.Label>Username:</Form.Label>
+								<Form.Control
+									type='text'
+									value={username}
+									onChange={(e) => setUsername(e.target.value)}
+									required
+									minLength='5'
+								/>
+							</Form.Group>
+							<Form.Group controlId='formPassword'>
+								<Form.Label>Password:</Form.Label>
+								<Form.Control
+									type='password'
+									value={password}
+									onChange={(e) => setPassword(e.target.value)}
+									required
+									minLength='5'
+								/>
+							</Form.Group>
+							<Button
+								className='mt-3 mb-3 goldButton'
+								type='submit'
+							>
+								Submit
+							</Button>
+						</Form>
+						<div>
+							<p className='text-muted text-center'>
+								Need an account?
+								<Link
+									to={"/signup"}
+									className='mx-2'
+								>
+									Signup
+								</Link>
+							</p>
+						</div>
+					</Card.Body>
+				</Card>
+			</Col>
+		</Row>
 	);
 };

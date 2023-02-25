@@ -6,17 +6,22 @@ import { SignupView } from "../signup-view/signup-view";
 import { UserView } from "../user-view/user-view";
 import { UpdateView } from "../user-update/user-update";
 import { RemoveUser } from "../user-remove/user-remove";
-import { Row, Col, Button } from "react-bootstrap";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Row, Col, Button, Form } from "react-bootstrap";
+import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 
 export const MainView = () => {
-	const storedUser = JSON.parse(localStorage.getItem("user")); //parse stringified JSON object sent byt login-view
+	const storedUsername = localStorage.getItem("username");
 	const storedToken = localStorage.getItem("token");
+	const storedUser = localStorage.getItem("user");
 	const [movies, setMovies] = useState([]);
-	const [users, setUsers] = useState([]);
-	const [user, setUser] = useState(storedUser ? storedUser : null); //set useState to first take storedUser info, if not, state is set to null
+	const [user, setUser] = useState(storedUser ? storedUser : null);
+	const [username, setUsername] = useState(
+		storedUsername ? storedUsername : null
+	);
 	const [token, setToken] = useState(storedToken ? storedToken : null);
+	const [filteredMovies, setFilteredMovies] = useState([]);
+	const [favoriteMovies, setFavoriteMovies] = useState([]);
 
 	useEffect(() => {
 		if (!token) {
@@ -26,10 +31,9 @@ export const MainView = () => {
 		fetch("https://movie-api-git-main-brett-ranieri.vercel.app/movies", {
 			headers: { Authorization: `Bearer ${token}` },
 		})
-			.then((response) => response.json()) //return data as json object
+			.then((response) => response.json())
 			.then((data) => {
 				const moviesFromApi = data.map((doc) => {
-					//parse data
 					return {
 						_id: doc._id,
 						title: doc.Title,
@@ -44,7 +48,7 @@ export const MainView = () => {
 					};
 				});
 
-				setMovies(moviesFromApi); //populate movies
+				setMovies(moviesFromApi);
 			});
 	}, [token]);
 
@@ -53,27 +57,101 @@ export const MainView = () => {
 			return;
 		}
 
-		fetch("https://movie-api-git-main-brett-ranieri.vercel.app/users", {
-			headers: { Authorization: `Bearer ${token}` },
-		})
-			.then((response) => response.json()) //return data as json object
-			.then((data) => {
-				const usersFromApi = data.map((doc) => {
-					//parse data
-					return {
-						user_id: doc._id,
-						name: doc.Name,
-						username: doc.Username,
-						password: doc.Password,
-						email: doc.Email,
-						birthday: doc.Birthday,
-						favoriteMovies: doc.FavoriteMovies,
-					};
+		const getUser = (username) => {
+			fetch(
+				`https://movie-api-git-main-brett-ranieri.vercel.app/users/${username}`,
+				{
+					headers: { Authorization: `Bearer ${token}` },
+				}
+			)
+				.then((response) => response.json())
+				.then((data) => {
+					setUser({ ...data });
 				});
+		};
+		getUser(username);
+	}, [token, username]);
 
-				setUsers(usersFromApi); //populate movies
-			});
-	}, [token]);
+	useEffect(() => {
+		if (!user) {
+			return;
+		}
+
+		const favList = movies.filter((movie) =>
+			user.FavoriteMovies.includes(movie._id)
+		);
+		setFavoriteMovies(favList);
+	}, [movies, user]);
+
+	const isFavorite = async (movie) => {
+		if (favoriteMovies.includes(movie)) {
+			removeFavMovie(movie._id);
+			setFavoriteMovies(favoriteMovies.filter((m) => m._id !== movie._id));
+		} else {
+			addFavMovie(movie._id);
+			setFavoriteMovies([...favoriteMovies, movie]);
+		}
+	};
+
+	const addFavMovie = async (movieId) => {
+		await fetch(
+			`https://movie-api-git-main-brett-ranieri.vercel.app/users/${user.Username}/movies/${movieId}`,
+			{
+				method: "PUT",
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		).catch((error) => {
+			console.error(error);
+			res.status(500).send("Error: ", error);
+		});
+	};
+
+	const removeFavMovie = async (movieId) => {
+		await fetch(
+			`https://movie-api-git-main-brett-ranieri.vercel.app/users/${user.Username}/remove/${movieId}`,
+			{
+				method: "DELETE",
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		).catch((error) => {
+			console.error(error);
+			res.status(500).send("Error: ", error);
+		});
+	};
+
+	const [searchText, setSearchText] = useState("");
+
+	useEffect(() => {
+		setFilteredMovies(movies);
+	}, [movies]);
+
+	const searchResult = async (text) => {
+		let searchFilter = movies.filter((m) =>
+			m.title.toLowerCase().includes(text)
+		);
+		setFilteredMovies(searchFilter);
+	};
+
+	const clearSearch = async () => {
+		setSearchText("");
+		searchResult("");
+	};
+
+	const handleSearch = async () => {
+		let handledText = searchText.toLowerCase();
+		searchResult(handledText);
+	};
+
+	const handleKeyDown = async (event) => {
+		if (event.key === "Enter") {
+			event.preventDefault();
+			handleSearch();
+		}
+	};
 
 	return (
 		<BrowserRouter>
@@ -84,8 +162,9 @@ export const MainView = () => {
 					setToken(null);
 					localStorage.clear();
 				}}
+				clearSearch={clearSearch}
 			/>
-			<Row className='justify-content-md-center'>
+			<Row className='justify-content-center'>
 				<Routes>
 					<Route
 						path='/signup'
@@ -94,7 +173,7 @@ export const MainView = () => {
 								{user ? (
 									<Navigate to='/' />
 								) : (
-									<Col md={5}>
+									<Col sm={9}>
 										<SignupView />
 									</Col>
 								)}
@@ -108,10 +187,10 @@ export const MainView = () => {
 								{user ? (
 									<Navigate to='/' />
 								) : (
-									<Col md={5}>
+									<Col sm={9}>
 										<LoginView
-											onLoggedIn={(user, token) => {
-												setUser(user);
+											onLoggedIn={(username, token) => {
+												setUsername(username);
 												setToken(token);
 											}}
 										/>
@@ -135,7 +214,9 @@ export const MainView = () => {
 									<Col md={8}>
 										<MovieView
 											movies={movies}
-											user={user}
+											isFavorite={isFavorite}
+											clearSearch={clearSearch}
+											favoriteMovies={favoriteMovies}
 										/>
 									</Col>
 								)}
@@ -153,9 +234,89 @@ export const MainView = () => {
 									/>
 								) : movies.length === 0 ? (
 									<div>The list is empty!</div>
+								) : filteredMovies.length === 0 ? (
+									<>
+										<Row className='justify-content-center'>
+											<Col
+												xs='auto'
+												sm={6}
+												md={6}
+												lg={6}
+												className='mt-4'
+											>
+												<Form>
+													<Form.Control
+														onChange={(e) => setSearchText(e.target.value)}
+														value={searchText}
+														type='search'
+														placeholder='Search Movies'
+														className='me-2'
+														aria-label='Search'
+														onKeyDown={handleKeyDown}
+													/>
+													<Button
+														onClick={handleSearch}
+														as={Link}
+														to='/'
+														className='mt-2 me-2 goldButton'
+														type='submit'
+													>
+														Search
+													</Button>
+													<Button
+														onClick={clearSearch}
+														className='mt-2 me-2 silverButton'
+													>
+														Clear
+													</Button>
+												</Form>
+											</Col>
+										</Row>
+										<h5 className='mt-4'>
+											Nothing matched your search. Please try again
+										</h5>
+									</>
 								) : (
 									<>
-										{movies.map((movie) => (
+										<Row className='justify-content-center'>
+											<Col
+												xs='auto'
+												sm={6}
+												md={6}
+												lg={6}
+												className='mt-4'
+											>
+												<Form>
+													<Form.Control
+														onChange={(e) => setSearchText(e.target.value)}
+														value={searchText}
+														type='search'
+														placeholder='Search Movies'
+														className='me-2'
+														aria-label='Search'
+														onKeyDown={handleKeyDown}
+													/>
+													<Button
+														variant='primary'
+														onClick={handleSearch}
+														as={Link}
+														to='/'
+														className='mt-2 me-2 goldButton'
+														type='submit'
+													>
+														Search
+													</Button>
+													<Button
+														onClick={clearSearch}
+														className='mt-2 me-2 silverButton'
+													>
+														Clear
+													</Button>
+												</Form>
+											</Col>
+										</Row>
+
+										{filteredMovies.map((movie) => (
 											<Col
 												className='mb-3 mt-3'
 												key={movie._id}
@@ -163,7 +324,13 @@ export const MainView = () => {
 												md={4}
 												lg={3}
 											>
-												<MovieCard movie={movie} />
+												<MovieCard
+													movie={movie}
+													clearSearch={clearSearch}
+													isFavorite={isFavorite}
+													favoriteMovies={favoriteMovies}
+													favButton={favoriteMovies.includes(movie)}
+												/>
 											</Col>
 										))}
 									</>
@@ -183,9 +350,9 @@ export const MainView = () => {
 								) : (
 									<Col md={8}>
 										<UserView
-											user={user}
-											users={users}
-											movies={movies}
+											favoriteMovies={favoriteMovies}
+											isFavorite={isFavorite}
+											clearSearch={clearSearch}
 										/>
 									</Col>
 								)}
@@ -193,7 +360,7 @@ export const MainView = () => {
 						}
 					/>
 					<Route
-						path='/users/profile/update'
+						path='/users/profile/update/'
 						element={
 							<>
 								{!user ? (

@@ -1,18 +1,28 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+export const NavigationBar = ({ user, onLoggedOut, clearSearch }) => {
 	return (
-		<Navbar bg='light'>
+		<Navbar
+			bg='light'
+			expand='sm'
+		>
 			<Container>
 				<Navbar.Brand
 					as={Link}
 					to='/'
+					onClick={clearSearch}
 				>
 					myMovie App
 				</Navbar.Brand>
-				<Navbar.Toggle aria-controls='basic-navbar-nav' />
-				<Navbar.Collapse id='basic-navbar-nav'>
+				<Navbar.Toggle
+					className='lightToggle'
+					aria-controls='basic-navbar-nav'
+				/>
+				<Navbar.Collapse
+					className='lightToggle'
+					id='basic-navbar-nav'
+				>
 					<Nav className='me-auto'>
 						{!user && (
 							<>
@@ -35,6 +45,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 								<Nav.Link
 									as={Link}
 									to='/'
+									onClick={clearSearch}
 								>
 									Home
 								</Nav.Link>

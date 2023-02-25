@@ -2,3 +2,141 @@ $primary: DarkCyan;
 $body-bg: Gray;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&display=swap");
+
+:root {
+	--bs-body-font-family: "Josefin Sans", sans-serif;
+}
+
+a {
+	color: #fad25a;
+}
+
+a:hover {
+	color: #daa520;
+}
+
+.navbar-brand,
+.nav-link,
+.lightToggle {
+	color: black !important;
+}
+
+.navbar-brand:hover,
+.nav-link:hover {
+	color: lightgray !important;
+}
+
+.navbar {
+	background-color: #8d721e !important;
+}
+
+.signupCard {
+	margin-top: 50px !important;
+	position: absolute !important;
+}
+
+.loginContainer {
+	background-color: #292929;
+	color: #8c8c8c;
+	margin-left: 2em;
+	margin-right: 2em;
+}
+
+.textContainer {
+	background-color: #d4af37;
+	opacity: 0.93;
+	padding: 30px;
+}
+
+.container {
+	position: relative;
+}
+
+.cardBody {
+	background-color: #292929;
+	color: #8c8c8c;
+}
+
+.buttonOne {
+	position: absolute;
+	top: 2%;
+	right: 5%;
+	opacity: 1;
+	background-color: transparent;
+	color: #d4af37;
+	border: none !important;
+	padding: 0px;
+}
+.buttonOne:hover,
+.buttonTwo:hover {
+	opacity: 1;
+	background-color: transparent;
+	color: black;
+	border: none !important;
+}
+
+.buttonTwo {
+	position: absolute;
+	top: 2%;
+	right: 5%;
+	background-color: transparent;
+	color: #daa520;
+	border: none !important;
+	padding: 0px;
+}
+
+.goldButton {
+	background-color: #daa520;
+	color: black;
+	border-color: black;
+}
+
+.goldButton:hover {
+	background-color: black;
+	color: #daa520;
+	border-color: #daa520;
+}
+
+.goldButton:focus {
+	background-color: #ae841a !important;
+	border-color: black !important;
+}
+
+.silverButton {
+	background-color: #cac8c4;
+	color: black;
+	border-color: black;
+}
+
+.silverButton:hover {
+	background-color: black;
+	color: #cac8c4;
+	border-color: #cac8c4;
+}
+
+.silverButton:focus {
+	background-color: #a4a19a !important;
+	border-color: black !important;
+}
+
+.form-control:focus {
+	border-color: #daa520;
+	box-shadow: 0px 0px 8px #daa520;
+}
+
+.accountContainer {
+	padding-left: 50px;
+}
+
+.accountInfo {
+	padding-left: 20px;
+}
+
+.warningText {
+	color: red;
+}
+
+.lightText {
+	color: white;
+}
