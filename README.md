@@ -4,7 +4,7 @@ Front End application for User interface with movie-API.
 
 ## Project Description
 
-Using React and Parcel, build the client-side for an app called myMovie allowing users to interact with the data stored in the existing server-side code.
+Using React, React Bootstrap, and Parcel, build the client-side for an app called myMovie allowing users to interact with the data stored in the existing server-side code. App is fully responsive for all screen sizes.
 
 ## How to get the project running
 
