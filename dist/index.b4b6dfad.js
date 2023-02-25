@@ -46459,6 +46459,7 @@ const MovieView = ({ movies , isFavorite , clearSearch , favoriteMovies  })=>{
     }, [
         favoriteMovies
     ]);
+    let filterMovies;
     const filterByGenre = (genre, id)=>{
         filterMovies = movies.filter((m)=>m.genreName === genre && m._id !== id);
         return filterMovies;
@@ -46494,12 +46495,12 @@ const MovieView = ({ movies , isFavorite , clearSearch , favoriteMovies  })=>{
                                 d: "M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 76,
+                                lineNumber: 77,
                                 columnNumber: 8
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 68,
+                            lineNumber: 69,
                             columnNumber: 7
                         }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("svg", {
                             xmlns: "http://www.w3.org/2000/svg",
@@ -46512,17 +46513,17 @@ const MovieView = ({ movies , isFavorite , clearSearch , favoriteMovies  })=>{
                                 d: "M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 87,
+                                lineNumber: 88,
                                 columnNumber: 8
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 79,
+                            lineNumber: 80,
                             columnNumber: 7
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 63,
+                        lineNumber: 64,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -46533,23 +46534,23 @@ const MovieView = ({ movies , isFavorite , clearSearch , favoriteMovies  })=>{
                             alt: "movie poster"
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 92,
+                            lineNumber: 93,
                             columnNumber: 6
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 91,
+                        lineNumber: 92,
                         columnNumber: 5
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 62,
+                lineNumber: 63,
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 101,
+                lineNumber: 102,
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -46561,17 +46562,17 @@ const MovieView = ({ movies , isFavorite , clearSearch , favoriteMovies  })=>{
                             children: movie.title
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 104,
+                            lineNumber: 105,
                             columnNumber: 6
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 103,
+                        lineNumber: 104,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 106,
+                        lineNumber: 107,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -46580,25 +46581,25 @@ const MovieView = ({ movies , isFavorite , clearSearch , favoriteMovies  })=>{
                                 children: "Synopsis: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 108,
+                                lineNumber: 109,
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                                 children: movie.description
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 109,
+                                lineNumber: 110,
                                 columnNumber: 6
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 107,
+                        lineNumber: 108,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 111,
+                        lineNumber: 112,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -46607,25 +46608,25 @@ const MovieView = ({ movies , isFavorite , clearSearch , favoriteMovies  })=>{
                                 children: "Director: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 113,
+                                lineNumber: 114,
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                                 children: movie.directorName
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 114,
+                                lineNumber: 115,
                                 columnNumber: 6
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 112,
+                        lineNumber: 113,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 116,
+                        lineNumber: 117,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -46634,25 +46635,25 @@ const MovieView = ({ movies , isFavorite , clearSearch , favoriteMovies  })=>{
                                 children: "Director Bio: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 118,
+                                lineNumber: 119,
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                                 children: movie.directorBio
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 119,
+                                lineNumber: 120,
                                 columnNumber: 6
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 117,
+                        lineNumber: 118,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 121,
+                        lineNumber: 122,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -46661,25 +46662,25 @@ const MovieView = ({ movies , isFavorite , clearSearch , favoriteMovies  })=>{
                                 children: "Director Birth Year: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 123,
+                                lineNumber: 124,
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                                 children: movie.directorBirth
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 124,
+                                lineNumber: 125,
                                 columnNumber: 6
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 122,
+                        lineNumber: 123,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 126,
+                        lineNumber: 127,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -46688,25 +46689,25 @@ const MovieView = ({ movies , isFavorite , clearSearch , favoriteMovies  })=>{
                                 children: "Director Death Year: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 128,
+                                lineNumber: 129,
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                                 children: movie.directorDeath
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 129,
+                                lineNumber: 130,
                                 columnNumber: 6
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 127,
+                        lineNumber: 128,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 131,
+                        lineNumber: 132,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -46715,25 +46716,25 @@ const MovieView = ({ movies , isFavorite , clearSearch , favoriteMovies  })=>{
                                 children: "Genre: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 133,
+                                lineNumber: 134,
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                                 children: movie.genreName
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 134,
+                                lineNumber: 135,
                                 columnNumber: 6
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 132,
+                        lineNumber: 133,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 136,
+                        lineNumber: 137,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -46742,33 +46743,33 @@ const MovieView = ({ movies , isFavorite , clearSearch , favoriteMovies  })=>{
                                 children: "Genre Description: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 138,
+                                lineNumber: 139,
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                                 children: movie.genreDescription
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 139,
+                                lineNumber: 140,
                                 columnNumber: 6
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 137,
+                        lineNumber: 138,
                         columnNumber: 5
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 102,
+                lineNumber: 103,
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 143,
+                        lineNumber: 144,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
@@ -46776,14 +46777,14 @@ const MovieView = ({ movies , isFavorite , clearSearch , favoriteMovies  })=>{
                         children: "Similar Movies:"
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 144,
+                        lineNumber: 145,
                         columnNumber: 5
                     }, undefined),
                     simMoviesExist ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                         children: "There are no movies that match this Genre in the database."
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 146,
+                        lineNumber: 147,
                         columnNumber: 6
                     }, undefined) : null,
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -46803,17 +46804,17 @@ const MovieView = ({ movies , isFavorite , clearSearch , favoriteMovies  })=>{
                                     favButton: favoriteMovies.includes(movie)
                                 }, void 0, false, {
                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                    lineNumber: 158,
+                                    lineNumber: 159,
                                     columnNumber: 8
                                 }, undefined)
                             }, movie._id, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 153,
+                                lineNumber: 154,
                                 columnNumber: 7
                             }, undefined))
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 148,
+                        lineNumber: 149,
                         columnNumber: 5
                     }, undefined)
                 ]
@@ -46825,18 +46826,18 @@ const MovieView = ({ movies , isFavorite , clearSearch , favoriteMovies  })=>{
                     children: "Back"
                 }, void 0, false, {
                     fileName: "src/components/movie-view/movie-view.jsx",
-                    lineNumber: 170,
+                    lineNumber: 171,
                     columnNumber: 5
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 169,
+                lineNumber: 170,
                 columnNumber: 4
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/movie-view/movie-view.jsx",
-        lineNumber: 61,
+        lineNumber: 62,
         columnNumber: 3
     }, undefined);
 };

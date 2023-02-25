@@ -41,6 +41,7 @@ export const MovieView = ({
 		}
 	}, [favoriteMovies]);
 
+	let filterMovies;
 	const filterByGenre = (genre, id) => {
 		filterMovies = movies.filter((m) => m.genreName === genre && m._id !== id);
 		return filterMovies;
