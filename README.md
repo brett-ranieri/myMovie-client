@@ -40,7 +40,7 @@ Production:
 
 ## Tools and Features to Highlight
 
-::Main View::
+**Main View**
 
 - Returns ALL movies to the user on cards (each movie card displays image, title, and genre)
 - Search bar that will filter the list of moves based on search field input submitted.
