@@ -48,7 +48,7 @@ Production:
 - Ability to navigate to profile view with navigation bar
 - Ability to log out
 
-::Movie View::
+<u>Movie View</u>
 
 - Returns all data stored about selected movie (including image, title, description, director info, gennre info)
 - Allows user to add a movie to favorites list with dedicated button
