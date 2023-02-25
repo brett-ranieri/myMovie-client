@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 export const RemoveUser = ({ user, onLoggedOut }) => {
 	const storedToken = localStorage.getItem("token");
 	const [token] = useState(storedToken ? storedToken : null);
-	console.log("User info: ", user);
 
 	const deleteUser = async (event) => {
 		event.preventDefault();
@@ -46,6 +45,6 @@ export const RemoveUser = ({ user, onLoggedOut }) => {
 					<Button className='m-2 goldButton'>Back</Button>
 				</Link>
 			</div>
-		</Col> //button calls onBackClick function from main-view when clicked
+		</Col>
 	);
 };

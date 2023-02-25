@@ -22,9 +22,9 @@ export const UserView = ({ favoriteMovies, isFavorite, clearSearch }) => {
 					headers: { Authorization: `Bearer ${storedToken}` },
 				}
 			)
-				.then((response) => response.json()) //return data as json object
+				.then((response) => response.json())
 				.then((data) => {
-					setUser({ ...data }); //populate movies
+					setUser({ ...data });
 				});
 		};
 		getUser(storedUsername);
@@ -40,7 +40,6 @@ export const UserView = ({ favoriteMovies, isFavorite, clearSearch }) => {
 			</Link>
 			<div class='accountContainer textContainer rounded-4 shadow-lg'>
 				<h3>Account Information:</h3>
-
 				<h5>Name: </h5>
 				<p class='accountInfo'>{user.Name}</p>
 				<h5>Username: </h5>
@@ -63,6 +62,6 @@ export const UserView = ({ favoriteMovies, isFavorite, clearSearch }) => {
 			<Link to={"/"}>
 				<Button className='mb-5 goldButton'>Back</Button>
 			</Link>
-		</Col> //button calls onBackClick function from main-view when clicked
+		</Col>
 	);
 };

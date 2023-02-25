@@ -14,7 +14,6 @@ export const UpdateView = ({ user }) => {
 
 	const storedToken = localStorage.getItem("token");
 	const [token] = useState(storedToken ? storedToken : null);
-	console.log("User info: ", user);
 
 	const handleUpdate = async (event) => {
 		event.preventDefault();
@@ -26,20 +25,9 @@ export const UpdateView = ({ user }) => {
 			Email: email,
 			Birthday: birthday,
 		};
-		console.log("Form input: ", data);
-		console.log(data.Username);
 
 		let review = (data) => {
 			setFetchStatus(false);
-			// if (
-			// 	!data.Username &&
-			// 	!data.Password &&
-			// 	!data.Name &&
-			// 	!data.Email &&
-			// 	!data.Birthday
-			// ) {
-			// 	return;
-			// }
 			if (!data.Username) {
 				delete data.Username;
 			}
@@ -58,10 +46,8 @@ export const UpdateView = ({ user }) => {
 			return data;
 		};
 		review(data);
-		console.log("reviewed: ", data);
 
 		const runUpdate = async (data) => {
-			console.log("fetching: ", data);
 			const updateUser = await fetch(
 				`https://movie-api-git-main-brett-ranieri.vercel.app/users/${user.Username}`,
 				{

@@ -1,13 +1,11 @@
-import { useState } from "react";
-import { Button } from "react-bootstrap";
-import { Container, Nav, Navbar, Form } from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const NavigationBar = ({ user, onLoggedOut, clearSearch }) => {
 	return (
 		<Navbar
-			bg='dark'
-			expand='md'
+			bg='light'
+			expand='sm'
 		>
 			<Container>
 				<Navbar.Brand
@@ -17,8 +15,14 @@ export const NavigationBar = ({ user, onLoggedOut, clearSearch }) => {
 				>
 					myMovie App
 				</Navbar.Brand>
-				<Navbar.Toggle aria-controls='basic-navbar-nav' />
-				<Navbar.Collapse id='basic-navbar-nav'>
+				<Navbar.Toggle
+					className='lightToggle'
+					aria-controls='basic-navbar-nav'
+				/>
+				<Navbar.Collapse
+					className='lightToggle'
+					id='basic-navbar-nav'
+				>
 					<Nav className='me-auto'>
 						{!user && (
 							<>
@@ -52,32 +56,6 @@ export const NavigationBar = ({ user, onLoggedOut, clearSearch }) => {
 									Profile
 								</Nav.Link>
 								<Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
-								{/* <Form className='d-flex align-items-end'>
-									<Form.Control
-										onChange={(e) => setSearchText(e.target.value)}
-										value={searchText}
-										type='search'
-										placeholder='Search'
-										className='me-2'
-										aria-label='Search'
-									/>
-									<Button
-										variant='primary'
-										onClick={handleSearch}
-										as={Link}
-										to='/'
-										className='me-2'
-									>
-										Search
-									</Button>
-									<Button
-										variant='danger'
-										onClick={clearSearch}
-										className='me-2'
-									>
-										Reset
-									</Button>
-								</Form> */}
 							</>
 						)}
 					</Nav>

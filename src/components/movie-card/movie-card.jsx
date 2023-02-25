@@ -5,58 +5,39 @@ import { Link } from "react-router-dom";
 
 export const MovieCard = ({
 	movie,
-	clearSearch,
+	// clearSearch,
 	isFavorite,
-	favoriteMovies,
-	// getButtonFav,
-	// sendToParent,
+	// favoriteMovies,
 	favButton,
 	favCheck,
 }) => {
 	const [buttonStyle, setButtonStyle] = useState("buttonOne");
 
-	const clearMovies = async () => {
-		clearSearch();
-	};
+	// const clearMovies = async () => {
+	// 	clearSearch();
+	// };
 
 	const clicked = async () => {
 		isFavorite(movie);
 		if (favButton === true) {
-			//on button click toggles state based on current state
 			setButtonStyle("buttonTwo");
-			// getButtonFav("buttonTwo");
 		} else {
 			setButtonStyle("buttonOne");
-			// getButtonFav("buttonOne");
 		}
 	};
 
-	// console.log("Fav movies from card: ", favoriteMovies);
-
 	useEffect(() => {
-		//initially checks if favMovie, then sets class accordingly
 		if (favButton === true) {
 			setButtonStyle("buttonTwo");
-			// getButtonFav(movie, "buttonTwo");
 		} else {
 			setButtonStyle("buttonOne");
-			// getButtonFav(movie, "buttonOne");
 		}
-		// console.log("UseEffect:", favoriteMovies);
 	}, [favButton]);
 
-	// useEffect(() => {
-	// 	getButtonFav(buttonFav);
-	// }, [getButtonFav]);
-
 	return (
-		<Card
-			// style={{ width: "24rem" }}
-			className='h-100'
-		>
+		<Card className='h-100'>
 			<div class='imgContainer'>
 				<Card.Img
-					// style={{ height: "auto", width: "20rem" }}
 					variant='top'
 					src={movie.imagePath}
 				/>
@@ -96,12 +77,7 @@ export const MovieCard = ({
 					to={`/movies/${encodeURIComponent(movie._id)}`}
 					onClick={favCheck}
 				>
-					{/* <Button
-						variant='primary'
-						onClick={clearMovies}
-					> */}
 					Details
-					{/* </Button> */}
 				</Link>
 			</Card.Body>
 		</Card>

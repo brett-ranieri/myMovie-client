@@ -1,7 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { Col, Row, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Col, Row } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 
 export const FavoriteMovie = ({ favoriteMovies, isFavorite, clearSearch }) => {

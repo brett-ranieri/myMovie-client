@@ -162,6 +162,7 @@ p {
 abbr[title] {
   cursor: help;
   text-decoration-skip-ink: none;
+  -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted;
 }
 
@@ -2625,7 +2626,7 @@ textarea.form-control-lg {
   padding-bottom: .625rem;
 }
 
-.form-floating > .form-control:focus ~ label, .form-floating > .form-control:not(:placeholder-shown) ~ label, .form-floating > .form-control-plaintext ~ label, .form-floating > .form-select ~ label, .form-floating > .form-control:-webkit-autofill ~ label {
+.form-floating > .form-control:focus ~ label, .form-floating > .form-control:not(:placeholder-shown) ~ label, .form-floating > .form-control-plaintext ~ label, .form-floating > .form-select ~ label, .form-floating > .form-control:autofill ~ label {
   opacity: .65;
   transform: scale(.85)translateY(-.5rem)translateX(.15rem);
 }
@@ -12018,17 +12019,28 @@ a:hover {
   color: #daa520;
 }
 
-.navbar-brand, .nav-link {
-  color: #8c8c8c !important;
+.navbar-brand, .nav-link, .lightToggle {
+  color: #000 !important;
 }
 
 .navbar-brand:hover, .nav-link:hover {
-  color: #fff !important;
+  color: #d3d3d3 !important;
+}
+
+.navbar {
+  background-color: #8d721e !important;
 }
 
 .signupCard {
   margin-top: 50px !important;
   position: absolute !important;
+}
+
+.loginContainer {
+  color: #8c8c8c;
+  background-color: #292929;
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
 .textContainer {

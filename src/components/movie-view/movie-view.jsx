@@ -9,92 +9,44 @@ export const MovieView = ({
 	isFavorite,
 	clearSearch,
 	favoriteMovies,
-	// getButtonFav,
-	// buttonFavStatus,
 }) => {
 	const { movieId } = useParams();
 	const movie = movies.find((m) => m._id === movieId);
-	const storedToken = localStorage.getItem("token");
-	const [token] = useState(storedToken ? storedToken : null);
 
 	const [simMoviesExist, setSimMoviesExist] = useState(false);
 	const [favButton, setFavButton] = useState(false);
+	const [buttonStyle, setButtonStyle] = useState("buttonOne");
 
 	window.onbeforeunload = function () {
 		window.scrollTo(0, 0);
 	};
 	window.onbeforeunload();
-	/////////////// START - for favorite movies //////////////////////////
-	const [buttonFav, setButtonFav] = useState("buttonOne");
-
-	/////////////////////////////////////////////////////////////////////////////
-	//////////////////EDGE CASE TESTING/////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////////
-	// const [testState, setTestState] = useState("false");
 
 	const clicked = async () => {
 		isFavorite(movie);
-		if (buttonFav === "buttonOne") {
-			//toggles state based on current state
-			setButtonFav("buttonTwo");
-			// getButtonFav("buttonTwo");
+		if (buttonStyle === "buttonOne") {
+			setButtonStyle("buttonTwo");
 		} else {
-			setButtonFav("buttonOne");
-			// getButtonFav("buttonOne");
+			setButtonStyle("buttonOne");
 		}
 	};
 
-	// console.log("Fav movies from card: ", favoriteMovies);
-	// const reviewFav = () => {
-	// 	if (favoriteMovies.includes(movie)) {
-	// 		setFavButton(true)
-	// 	}
-	// } else
 	useEffect(() => {
-		//checks if favMovie, then sets class accordingly
 		if (favoriteMovies.includes(movie)) {
-			setButtonFav("buttonTwo");
+			setButtonStyle("buttonTwo");
 			setFavButton(true);
-			console.log("it was me");
-			// getButtonFav(movie, "buttonTwo");
 		} else {
-			setButtonFav("buttonOne");
+			setButtonStyle("buttonOne");
 			setFavButton(false);
-			console.log("im the problem");
-			// getButtonFav(movie, "buttonOne");
 		}
-		// console.log("UseEffect:", favoriteMovies);
 	}, [favoriteMovies]);
 
-	/////////////////////////////////////////////////////////////////////////////
-	//////////////////EDGE CASE TESTING/////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////////
-	// const checkTestState = () => {
-	// 	if (testState === true) {
-	// 		setTestState(false);
-	// 	} else {
-	// 		setTestState(true);
-	// 	}
-	// 	console.log(testState);
-	// };
-
-	// const favCheck = async () => {
-	// 	checkTestState();
-	// 	console.log("ran");
-	// };
-	/////////////////////////////////////////////////////////////////////////////
-	//////////////////EDGE CASE TESTING/////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////////
-
-	//////////////////////End - for favorite movies /////////////////////
-	////////////////// Start - Similar Movies Feature //////////////////////////
 	const filterByGenre = (genre, id) => {
 		filterMovies = movies.filter((m) => m.genreName === genre && m._id !== id);
 		return filterMovies;
 	};
 
 	let filteredMovies = filterByGenre(movie.genreName, movie._id);
-	// console.log(filteredMovies);
 
 	const checkSimMovies = (list) => {
 		useEffect(() => {
@@ -105,24 +57,11 @@ export const MovieView = ({
 	};
 	checkSimMovies(filteredMovies);
 
-	// console.log(buttonFavStatus);
-	// console.log(simMoviesExist);
-	/////////////////////// End - Similar Movies Feature //////////////////////
-	// let buttonFav;
-	// const getButtonFav = (data) => {
-	// 	console.log(data);
-	// 	buttonFav = data;
-	// 	// bFav = data;
-	// };
-	// useEffect(() => {
-	// 	getButtonFav();
-	// }, []);
-
 	return (
 		<Col className='mt-3 mb-3'>
 			<div className='container'>
 				<Button
-					className={buttonFav}
+					className={buttonStyle}
 					onClick={clicked}
 				>
 					{favButton ? (
@@ -215,8 +154,6 @@ export const MovieView = ({
 							className='mb-3 mt-3'
 							key={movie._id}
 							sm={4}
-							// md={4}
-							// lg={3}
 						>
 							<MovieCard
 								movie={movie}
@@ -224,8 +161,6 @@ export const MovieView = ({
 								clearSearch={clearSearch}
 								favoriteMovies={favoriteMovies}
 								favButton={favoriteMovies.includes(movie)}
-								// favCheck={favCheck}
-								// getButtonFav={getButtonFav}
 							/>
 						</Col>
 					))}
@@ -234,6 +169,6 @@ export const MovieView = ({
 			<Link to={"/"}>
 				<Button className='mb-5 goldButton'>Back</Button>
 			</Link>
-		</Col> //button calls onBackClick function from main-view when clicked
+		</Col>
 	);
 };
