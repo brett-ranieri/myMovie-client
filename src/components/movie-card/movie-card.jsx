@@ -3,19 +3,8 @@ import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const MovieCard = ({
-	movie,
-	// clearSearch,
-	isFavorite,
-	// favoriteMovies,
-	favButton,
-	favCheck,
-}) => {
+export const MovieCard = ({ movie, isFavorite, favButton }) => {
 	const [buttonStyle, setButtonStyle] = useState("buttonOne");
-
-	// const clearMovies = async () => {
-	// 	clearSearch();
-	// };
 
 	const clicked = async () => {
 		isFavorite(movie);
@@ -75,7 +64,7 @@ export const MovieCard = ({
 				<Card.Text>{movie.genreName}</Card.Text>
 				<Link
 					to={`/movies/${encodeURIComponent(movie._id)}`}
-					onClick={favCheck}
+					// onClick={favCheck}
 				>
 					Details
 				</Link>

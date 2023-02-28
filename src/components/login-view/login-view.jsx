@@ -25,10 +25,9 @@ export const LoginView = ({ onLoggedIn }) => {
 			.then((response) => response.json())
 			.then((data) => {
 				if (data.user) {
-					localStorage.setItem("user", data.user);
 					localStorage.setItem("token", data.token);
-					localStorage.setItem("username", data.user.Username);
-					onLoggedIn(data.user.Username, data.token);
+					localStorage.setItem("userId", data.user.Username);
+					onLoggedIn(data.token);
 				} else {
 					alert("No such user");
 				}
