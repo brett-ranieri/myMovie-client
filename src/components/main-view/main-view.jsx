@@ -11,14 +11,11 @@ import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 
 export const MainView = () => {
-	const storedUsername = localStorage.getItem("username");
 	const storedToken = localStorage.getItem("token");
-	const storedUser = localStorage.getItem("user");
+	const storedUserId = localStorage.getItem("userId");
 	const [movies, setMovies] = useState([]);
-	const [user, setUser] = useState(storedUser ? storedUser : null);
-	const [username, setUsername] = useState(
-		storedUsername ? storedUsername : null
-	);
+	const [user, setUser] = useState(null);
+	const [users, setUsers] = useState([]);
 	const [token, setToken] = useState(storedToken ? storedToken : null);
 	const [filteredMovies, setFilteredMovies] = useState([]);
 	const [favoriteMovies, setFavoriteMovies] = useState([]);
@@ -57,20 +54,36 @@ export const MainView = () => {
 			return;
 		}
 
-		const getUser = (username) => {
-			fetch(
-				`https://movie-api-git-main-brett-ranieri.vercel.app/users/${username}`,
-				{
-					headers: { Authorization: `Bearer ${token}` },
-				}
-			)
+		const getUsers = () => {
+			fetch(`https://movie-api-git-main-brett-ranieri.vercel.app/users`, {
+				headers: { Authorization: `Bearer ${token}` },
+			})
 				.then((response) => response.json())
 				.then((data) => {
-					setUser({ ...data });
+					setUsers(data);
 				});
 		};
-		getUser(username);
-	}, [token, username]);
+		getUsers();
+	}, [token]);
+
+	const getUser = users.find((u) => u._id === storedUserId);
+
+	useEffect(() => {
+		if (!token) {
+			return;
+		}
+		setUser(getUser);
+	}, [getUser]);
+
+	const rerunUsers = async () => {
+		fetch(`https://movie-api-git-main-brett-ranieri.vercel.app/users`, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setUsers(data);
+			});
+	};
 
 	useEffect(() => {
 		if (!user) {
@@ -189,8 +202,7 @@ export const MainView = () => {
 								) : (
 									<Col sm={9}>
 										<LoginView
-											onLoggedIn={(username, token) => {
-												setUsername(username);
+											onLoggedIn={(token) => {
 												setToken(token);
 											}}
 										/>
@@ -233,7 +245,7 @@ export const MainView = () => {
 										replace
 									/>
 								) : movies.length === 0 ? (
-									<div>The list is empty!</div>
+									<div>The list is empty! Please wait for it to load...</div>
 								) : filteredMovies.length === 0 ? (
 									<>
 										<Row className='justify-content-center'>
@@ -326,9 +338,7 @@ export const MainView = () => {
 											>
 												<MovieCard
 													movie={movie}
-													clearSearch={clearSearch}
 													isFavorite={isFavorite}
-													favoriteMovies={favoriteMovies}
 													favButton={favoriteMovies.includes(movie)}
 												/>
 											</Col>
@@ -339,7 +349,7 @@ export const MainView = () => {
 						}
 					/>
 					<Route
-						path='/users/profile'
+						path='/users/:_id'
 						element={
 							<>
 								{!user ? (
@@ -350,6 +360,8 @@ export const MainView = () => {
 								) : (
 									<Col md={8}>
 										<UserView
+											user={user}
+											setUser={setUser}
 											favoriteMovies={favoriteMovies}
 											isFavorite={isFavorite}
 											clearSearch={clearSearch}
@@ -360,7 +372,7 @@ export const MainView = () => {
 						}
 					/>
 					<Route
-						path='/users/profile/update/'
+						path='/users/:_id/update/'
 						element={
 							<>
 								{!user ? (
@@ -372,6 +384,7 @@ export const MainView = () => {
 									<Col md={8}>
 										<UpdateView
 											user={user}
+											rerunUsers={rerunUsers}
 											onLoggedOut={() => {
 												setUser(null);
 												setToken(null);
