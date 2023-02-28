@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Col, Button, Form } from "react-bootstrap";
 
-export const UpdateView = ({ user }) => {
+export const UpdateView = ({ user, rerunUsers }) => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [name, setName] = useState("");
@@ -63,6 +63,7 @@ export const UpdateView = ({ user }) => {
 			const response = await updateUser.json();
 			if (response) {
 				setFetchStatus(true);
+				rerunUsers();
 			} else {
 				alert("Update failed, please try again.");
 			}

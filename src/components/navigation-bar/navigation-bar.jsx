@@ -51,7 +51,7 @@ export const NavigationBar = ({ user, onLoggedOut, clearSearch }) => {
 								</Nav.Link>
 								<Nav.Link
 									as={Link}
-									to='/users/profile'
+									to={`/users/${encodeURIComponent(user._id)}`}
 								>
 									Profile
 								</Nav.Link>

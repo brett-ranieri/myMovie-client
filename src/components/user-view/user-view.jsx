@@ -1,38 +1,14 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import { Col, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FavoriteMovie } from "../movie-fav/movie-fav";
 
-export const UserView = ({ favoriteMovies, isFavorite, clearSearch }) => {
-	const storedUsername = localStorage.getItem("username");
-	const storedToken = localStorage.getItem("token");
-	const storedUser = localStorage.getItem("user");
-	const [user, setUser] = useState(storedUser ? storedUser : null);
-
-	useEffect(() => {
-		if (!storedToken) {
-			return;
-		}
-
-		const getUser = (storedUsername) => {
-			fetch(
-				`https://movie-api-git-main-brett-ranieri.vercel.app/users/${storedUsername}`,
-				{
-					headers: { Authorization: `Bearer ${storedToken}` },
-				}
-			)
-				.then((response) => response.json())
-				.then((data) => {
-					setUser({ ...data });
-				});
-		};
-		getUser(storedUsername);
-	}, [storedToken, storedUsername]);
+export const UserView = ({ user, favoriteMovies, isFavorite, clearSearch }) => {
+	const storedUserId = localStorage.getItem("userId");
 
 	return (
 		<Col className='mt-3'>
-			<Link to={"/users/profile/update"}>
+			<Link to={`/users/${encodeURIComponent(storedUserId)}/update`}>
 				<Button className='m-2 mb-3 goldButton'>Update Information</Button>
 			</Link>
 			<Link to={"/users/remove"}>
