@@ -6,7 +6,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build"
+		"deploy": "gh-pages -d build",
+		"build": "react-scripts build"
 	},
 	"repository": {
 		"type": "git",
@@ -24,7 +25,8 @@
 		"react-bootstrap": "^2.7.0",
 		"react-dom": "^18.2.0",
 		"react-router": "^6.8.1",
-		"react-router-dom": "^6.8.1"
+		"react-router-dom": "^6.8.1",
+		"react-scripts": "^5.0.1"
 	},
 	"devDependencies": {
 		"@parcel/transformer-sass": "^2.8.3",
